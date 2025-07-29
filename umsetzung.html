@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Implementierung – PACO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 scroll-smooth">
+
+  <!-- HEADER -->
+  <div id="site-header"></div>
+
+  <!-- HERO -->
+  <section class="relative h-[50vh] min-h-[400px]">
+    <img src="assets/umsetzung-hero.jpg" alt="Implementierung PACO" class="absolute inset-0 w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent flex flex-col justify-center px-6 md:px-20">
+      <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight max-w-2xl">
+        So bringen Sie PACO an Ihre Hochschule
+      </h1>
+      <p class="text-white mt-4 max-w-xl">
+        Von der ersten Analyse bis zum Live-Betrieb – sicher, effizient und DSGVO-konform.
+      </p>
+      <a href="#prozess" class="mt-6 inline-block bg-white text-[#7C3AED] px-6 py-2 rounded shadow hover:bg-gray-100">
+        Ablauf ansehen
+      </a>
+    </div>
+  </section>
+
+
+  <!-- TECHNIKSECTION: PACO ARCHITEKTUR -->
+  <section class="py-20 px-6 md:px-20 bg-white">
+    <h2 class="text-2xl md:text-4xl font-semibold text-center text-[#1F2937] mb-8">Wie PACO funktioniert</h2>
+    <p class="text-center text-[#6B7280] max-w-3xl mx-auto mb-10">
+      PACO basiert auf einem modernen RAG-Ansatz (Retrieval-Augmented Generation). Das heißt: Antworten stammen nicht nur aus dem Sprachmodell, sondern aus einer verifizierten, aktuellen Wissensdatenbank und werden speziell für Hochschulfragen optimiert.
+    </p>
+
+    <div class="max-w-3xl mx-auto text-[#1F2937] text-base md:text-lg leading-relaxed">
+      <ul class="list-disc pl-5 space-y-4">
+        <li><strong>Fachliche Tiefe:</strong> PACO verwendet fachspezifisch trainierte Prompts, um wie ein menschlicher Studienberater zu denken.</li>
+        <li><strong>Aktuelle Inhalte:</strong> Informationen stammen aus geprüften hochschuleigenen Quellen (z. B. Webseiten, Ordnungen, Formularen).</li>
+        <li><strong>Transparente Herkunft:</strong> Antworten verweisen auf ihre Datenquelle – für maximale Nachvollziehbarkeit.</li>
+         <li><strong>Kein Halluzinieren:</strong> PACO antworte auf Basis ihrer Informationen und erfindet nichts hinzu.</li>
+        <li><strong>DSGVO-konform:</strong> Keine Speicherung oder Übertragung personenbezogener Daten an Drittanbieter.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- IMPLEMENTIERUNGSPROZESS -->
+  <section id="prozess" class="bg-white py-20 px-6 md:px-20">
+    <h2 class="text-2xl md:text-4xl font-semibold text-center text-[#1F2937] mb-12">So einfach führen Sie PACO ein</h2>
+    <div class="max-w-5xl mx-auto">
+     <p class="max-w-3xl mx-auto text-center text-[#6B7280] text-base md:text-lg leading-relaxed mb-10">
+    Vom ersten Workshop bis zum Live-Betrieb in nur <strong class="text-[#1F2937] font-medium">vier Wochen</strong>:<br class="hidden sm:inline" />
+  PACO wird in einem klar strukturierten 8‑Schritte‑Prozess eingeführt – individuell angepasst an Ihre Hochschule,<br class="hidden md:inline" />
+</p>
+      <img src="assets/implementierungsprozess.jpg" alt="Implementierungsprozess PACO" class="w-full rounded-xl shadow-md" />
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <!-- FOOTER -->
+  <footer class="text-center text-sm text-[#6B7280] py-10">
+    © 2025 PACO. Alle Rechte vorbehalten.
+  </footer>
+
+  <!-- HEADER-SKRIPT -->
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('site-header').innerHTML = data;
+
+        // Hamburger Menu Funktionalität nach dem Laden des Headers
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+          });
+        }
+      });
+  </script>
+
+</body>
+</html>

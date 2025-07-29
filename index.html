@@ -6,82 +6,301 @@
   <title>PACO – KI-Assistent für Hochschulen</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-gray-900">
-  <header class="absolute top-0 left-0 w-full z-10 text-white">
-    <div class="flex items-center justify-between px-6 py-1">
-      <img src="assets/logo-white.png" alt="PACO Logo" class="h-24">
-      
-      <!-- Desktop Navigation -->
-      <nav class="hidden sm:flex space-x-6 text-sm">
-        <a href="#" class="hover:underline">Start</a>
-        <a href="#" class="hover:underline">Lösungen</a>
-        <a href="#" class="hover:underline">Demo</a>
-        <a href="#" class="hover:underline">Lizenzen</a>
-        <a href="#" class="hover:underline">Kontakt</a>
-      </nav>
+<body class="bg-white text-gray-900 scroll-smooth">
+  <!-- HEADER wird dynamisch geladen -->
+  <div id="site-header"></div>
 
-      <!-- Mobile Menu Button -->
-      <button id="menu-toggle" class="sm:hidden p-2 bg-transparent hover:bg-white hover:bg-opacity-10 rounded focus:outline-none" aria-label="Menü öffnen">
-        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mobile Navigation -->
-    <div id="mobile-menu" class="hidden sm:hidden px-6 pb-4 bg-black bg-opacity-80">
-      <a href="#" class="block py-1">Start</a>
-      <a href="#" class="block py-1">Lösungen</a>
-      <a href="#" class="block py-1">Demo</a>
-      <a href="#" class="block py-1">Lizenzen</a>
-      <a href="#" class="block py-1">Kontakt</a>
-    </div>
-  </header>
-
-  <section class="relative w-full h-[16/9]">
-    <img src="assets/hero.jpg" alt="Hero" class="w-full h-full object-contain" />
-    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center px-8 md:px-20 pt-24">
+  <!-- HERO -->
+  <section id="start" class="relative w-full h-[50vh] min-h-[500px] max-h-[700px]">
+    <img src="assets/hero.jpg" alt="Hero" class="w-full h-full object-cover object-right" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent flex flex-col justify-center px-6 md:px-20 pt-20 pb-8">
       <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight max-w-xl">
-        Der KI-Assistent für Hochschulen
+        PACO - Die KI-Assistenz für Hochschulen
       </h1>
       <p class="text-white mt-4 max-w-xl">
-        Optimieren Sie die Studienberatung und Verwaltung mit PACO
+        Antwortet zuverlässig auf alle Fragen. DSGVO-konform und ohne Halluzinieren.
       </p>
-      <a href="#" class="mt-6 inline-block bg-white text-purple-700 px-6 py-2 rounded shadow hover:bg-gray-200">
+      <a href="#kontakt" class="mt-6 inline-block bg-white text-purple-700 px-6 py-2 rounded shadow hover:bg-gray-200">
         Mehr erfahren
       </a>
     </div>
   </section>
+ <!-- PROBLEM‑LÖSUNG & MODULE -->
+  <section class="bg-white py-16 px-6 md:px-20 text-center text-gray-800">
 
-  <section class="bg-gray-50 py-12 px-4 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-    <div class="bg-white p-6 rounded text-center shadow">
-      <h3 class="font-bold mb-2">Coach für Studienwahl</h3>
-      <p>Assistenz beim Entscheidungsprozess für Studieninteressierte – mit PACO.</p>
+    <!-- Problem‑Lösung -->
+    <h2  class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center mb-10">
+      Weniger Suchstress. Mehr Zeit für echte Beratung.
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-16 max-w-6xl mx-auto">
+      <div>
+        <h3 class="font-semibold">Infoflut für Studieninteressierte</h3>
+        <p>PACO Coach und Chat helfen gezielt</p>
+      </div>
+      <div>
+        <h3 class="font-semibold">Überlastete Beratung</h3>
+        <p>Automatisierte Antworten rund um die Uhr</p>
+      </div>
+      <div>
+        <h3 class="font-semibold">Schwieriger Zugang zu Verwaltungswissen</h3>
+        <p>PACO Support kennt Regularien und Gesetze</p>
+      </div>
     </div>
-    <div class="bg-white p-6 rounded text-center shadow">
-      <h3 class="font-bold mb-2">Chat für Studierende</h3>
-      <p>Persönliche Unterstützung für alle Fragen rund ums Studium.</p>
-    </div>
-    <div class="bg-white p-6 rounded text-center shadow">
-      <h3 class="font-bold mb-2">Chat für Verwaltung</h3>
-      <p>Effiziente Bearbeitung von Anfragen – automatisiert und datenschutzkonform.</p>
-    </div>
-    <div class="bg-white p-6 rounded text-center shadow">
-      <h3 class="font-bold mb-2">Dashboard für Analytics</h3>
-      <p>Transparente Einblicke in Trends, Fragen und Nutzungsverhalten.</p>
-    </div>
-  </section>
 
-  <footer class="text-center text-sm py-6 text-gray-500">
-    © 2025 PACO – Alle Rechte vorbehalten
-  </footer>
+<!-- Vier Module – klickbare Kacheln im PACO‑Style gemäß Style Guide -->
+<h2  class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center mb-10">Vier Module. Ein Assistent.</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+
+<div class="group block bg-white border border-[#E9D5FF] rounded-xl p-6 hover:shadow-lg hover:bg-[#E9D5FF] transition text-center">
+  <div class="flex justify-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="#7C3AED" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0118 20.944M12 14L5.84 10.578A12.083 12.083 0 006 20.944" />
+    </svg>
+  </div>
+  <a href="#coach">
+    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] group-hover:text-[#06B6D4] mb-1">
+      PACO Coach
+    </h3>
+  </a>
+  <p class="text-base md:text-lg text-[#6B7280] mb-4">
+    Passende Studiengänge finden
+  </p>
+  <a href="https://study-coach.uni-koeln.de/de/question/1/1/%23/" target="_blank" rel="noopener noreferrer">
+    <button class="bg-[#7C3AED] text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-[#6A2ECD] transition">
+      An der Uni Köln testen
+    </button>
+  </a>
+</div>
+
+<!-- PACO Chat Card -->
+<div class="group block bg-white border border-[#E9D5FF] rounded-xl p-6 hover:shadow-lg hover:bg-[#E9D5FF] transition text-center">
+  <!-- Icon -->
+  <div class="flex justify-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="#7C3AED" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.99 9.99 0 01-4.9-1.3L3 20l1.3-3.9A9.99 9.99 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+    </svg>
+  </div>
+
+  <!-- Modul-Name -->
+  <a href="#chat" class="inline-block mb-2">
+    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] group-hover:text-[#06B6D4]">
+      PACO Chat
+    </h3>
+  </a>
+
+  <!-- Beschreibung -->
+  <p class="text-base md:text-lg text-[#6B7280] mb-4">
+    Zuverlässige Antworten rund ums Studium
+  </p>
+
+  <!-- Externer Demo-Button -->
+  <a href="https://study-coach.uni-koeln.de/de/paco_chat/24272/3/%23/" target="_blank" rel="noopener noreferrer">
+    <button class="bg-[#7C3AED] text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-[#6A2ECD] transition">
+      An der Uni Köln testen
+    </button>
+  </a>
+</div>
+<!-- PACO Support -->
+<a href="#support" class="group block bg-white border border-[#E9D5FF] rounded-xl p-6 hover:shadow-lg hover:bg-[#E9D5FF] transition text-center">
+  <div class="flex justify-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="#7C3AED" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M4 6h16M5 14h14M6 18h12M9 22h6" />
+    </svg>
+  </div>
+  <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] group-hover:text-[#06B6D4] mb-1">
+    PACO Support
+  </h3>
+  <p class="text-base md:text-lg text-[#6B7280]">
+    Verwaltungs- und Studienfragen rechtssicher beantworten
+  </p>
+</a>
+
+<!-- PACO Dashboard -->
+<a href="#dashboard" class="group block bg-white border border-[#E9D5FF] rounded-xl p-6 hover:shadow-lg hover:bg-[#E9D5FF] transition text-center">
+  <div class="flex justify-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="#7C3AED" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M7 13h4v6H7M13 9h4v10h-4" />
+    </svg>
+  </div>
+  <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] group-hover:text-[#06B6D4] mb-1">
+    PACO Dashboard
+  </h3>
+  <p class="text-base md:text-lg text-[#6B7280]">
+    Nutzung analysieren und Wissenslücken erkennen
+  </p>
+</a>
+</div>
+
+
+<!-- Implementierung / Preise -->
+<section class="py-16 bg-white">
+  <!-- Container für max-width + horizontales Padding -->
+  <div class="max-w-6xl mx-auto px-4">
+    <!-- Überschrift -->
+    <h2  class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center mb-10">
+      Preisgekrönte KI-Lösung.
+    </h2>
+
+    <!-- Grid mit größerem Abstand -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+      
+      <!-- 1. Spalte -->
+      <div class="space-y-2">
+        <h3 class="font-semibold mb-2">Schnelle Implementierung</h3>
+        <p class="text-base md:text-lg text-[#6B7280] leading-relaxed">
+          PACO ist in kurzer Zeit trainiert und sofort einsatzbereit.
+        </p>
+      </div>
+
+      <!-- 2. Spalte -->
+      <div class="space-y-2">
+        <h3 class="font-semibold mb-2">Top Performance</h3>
+        <p class="text-base md:text-lg text-[#6B7280] leading-relaxed">
+          PACO beantwortet über 95 % aller Fragen mit über 99 % Zuverlässigkeit.
+        </p>
+      </div>
+
+      <!-- 3. Spalte -->
+      <div class="space-y-2">
+        <h3 class="font-semibold mb-2">Zuverlässige Lösung</h3>
+        <p class="text-base md:text-lg text-[#6B7280] leading-relaxed">
+          PACO ist erprobt, mehrfach ausgezeichnet und vertrauenswürdig.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Zitat & CTA -->
+    <div class="text-center">
+      <blockquote class="italic text-[#1F2937] mb-4 leading-relaxed">
+        „Mit PACO erhalten Studieninteressierte in Sekundenschnelle präzise Antworten – ein echter Gamechanger.“
+      </blockquote>
+      <p class="mb-6 text-sm text-[#6B7280]">Marketing Manager, WiSo‑Fakultät</p>
+      <a href="#kontakt" class="inline-block bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg shadow">
+        Jetzt PACO live erleben
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<section class="px-6 py-16 md:px-20">
+  <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center mb-10">
+    Warum PACO überzeugt
+  </h2>
+
+  <!-- Responsive Wrapper -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-sm md:text-base border-separate border-spacing-0">
+      <thead>
+        <tr>
+          <th class="p-4 font-semibold text-left text-lg md:text-xl">Kriterium</th>
+          <th class="p-4 font-semibold text-white bg-[#7C3AED] text-center rounded-tl-xl rounded-tr-xl text-lg md:text-xl">
+            PACO
+          </th>
+          <th class="p-4 font-semibold text-center text-lg md:text-xl">ChatGPT etc.</th>
+          <th class="p-4 font-semibold text-center text-lg md:text-xl">Anderer Chatbot</th>
+          <th class="p-4 font-semibold text-center text-lg md:text-xl">FAQ‑Seiten</th>
+        </tr>
+        <!-- Schwarze horizontale Linie unter der ersten Zeile -->
+        <tr>
+          <td colspan="5"><hr class="border border-black" /></td>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-gray-100">
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">DSGVO-konform / Datenschutz</td>
+          <td class="p-4 text-center text-green-500 bg-[#F3E8FF]">✔</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+          <td class="p-4 text-center text-green-500">✔</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">Integration in Hochschulsysteme</td>
+          <td class="p-4 text-center text-green-500 bg-[#F3E8FF]">✔</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">Training mit Universitätsdaten</td>
+          <td class="p-4 text-center text-green-500 bg-[#F3E8FF]">✔</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">Kontextverständnis & Fachlogik</td>
+          <td class="p-4 text-center text-green-500 bg-[#F3E8FF]">✔</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">Analytics & Auswertungen</td>
+          <td class="p-4 text-center text-green-500 bg-[#F3E8FF]">✔</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">Gezieltes Lernen</td>
+          <td class="p-4 text-center text-green-500 bg-[#F3E8FF]">✔</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">Beeinflussbarkeit durch Anwender</td>
+          <td class="p-4 text-center text-green-500 bg-[#F3E8FF]">✔</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">Allgemeinwissen</td>
+          <td class="p-4 text-center text-gray-400 bg-[#F3E8FF]">–</td>
+          <td class="p-4 text-center text-green-500">✔</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">Sofort einsetzbar</td>
+          <td class="p-4 text-center text-gray-400 bg-[#F3E8FF]">–</td>
+          <td class="p-4 text-center text-green-500">✔</td>
+          <td class="p-4 text-center text-gray-400">–</td>
+          <td class="p-4 text-center text-red-500">✘</td>
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="p-4 text-left font-medium">Niedrige Kosten</td>
+          <td class="p-4 text-center text-gray-400 bg-[#F3E8FF]">–</td>
+          <td class="p-4 text-center text-green-500">✔</td>
+          <td class="p-4 text-center text-green-500">✔</td>
+          <td class="p-4 text-center text-green-500">✔</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 
   <script>
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    });
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('site-header').innerHTML = data;
+        
+        // Hamburger Menu Funktionalität nach dem Laden des Headers
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+          });
+        }
+      });
   </script>
 </body>
-</html>
