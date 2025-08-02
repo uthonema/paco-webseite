@@ -46,7 +46,7 @@
 
 
 
-<section class="mb-1">
+<section class="mb-16">
   <div class="bg-white py-16 px-6 md:px-20 text-center text-gray-800">
     <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
       Fragen zu Studium und Verwaltung? PACO liefert jederzeit verlässliche Antworten.
@@ -105,17 +105,9 @@
   </div>
 </section>
 
-<section class="mt-1 mb-16 bg-[#FFFFFF] py-16 px-6 md:px-20 text-gray-800">
-    <form action="/contact" method="POST" class="max-w-xl mx-auto grid gap-6">
-        <a href="kontakt.html"
-           class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
-            Demo buchen oder Frage stellen
-        </a>
-    </form>
-</section>
 
 
-<section class="bg-[#F9F6FF] mb-16 py-16">
+<section class="mb-16">
 <!-- Vier Module – klickbare Kacheln im PACO-Style gemäß Style Guide -->
 <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
   PACOs Module – für gute Beratung,  weniger Verwaltungsaufwand und mehr Überblick
@@ -130,7 +122,8 @@
 
 
   <!-- PACO Coach -->
-  <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center flex flex-col h-full">
+  <a href="loesungen.html#coach"
+     class="group block bg-white border border-[#E9D5FF] rounded-xl p-6 hover:shadow-lg hover:bg-[#E9D5FF] transition text-center no-underline flex flex-col h-full">
 
     <!-- Icon -->
     <div class="flex justify-center mb-4">
@@ -140,17 +133,23 @@
       </svg>
     </div>
 
-    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] mb-1">
+    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] group-hover:text-[#06B6D4] mb-1">
       PACO Coach
     </h3>
     <p class="text-base md:text-lg text-[#6B7280] mb-4 flex-grow">
      Führt ein dreiminütiges KI-Interview und empfiehlt passende Studiengänge – individuell und datenbasiert.
     </p>
 
-  </div>
+    <button
+      onclick="window.open('https://study-coach.uni-koeln.de/de/question/1/1/%23/','_blank')"
+      class="bg-[#7C3AED] text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-[#6A2ECD] transition mt-auto">
+      An der Uni Köln testen
+    </button>
+  </a>
 
   <!-- PACO Chat -->
-  <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center flex flex-col h-full">
+  <a href="loesungen.html#chat"
+     class="group block bg-white border border-[#E9D5FF] rounded-xl p-6 hover:shadow-lg hover:bg-[#E9D5FF] transition text-center no-underline flex flex-col h-full">
 
     <div class="flex justify-center mb-4">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="#7C3AED" stroke-width="2">
@@ -159,17 +158,23 @@
       </svg>
     </div>
 
-    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] mb-1">
+    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] group-hover:text-[#06B6D4] mb-1">
       PACO Chat
     </h3>
     <p class="text-base md:text-lg text-[#6B7280] mb-4 flex-grow">
       Beantwortet alle Fragen zum Studium – automatisch, zuverlässig und ohne Halluzinationen.
     </p>
 
-  </div>
+    <button
+      onclick="window.open('https://study-coach.uni-koeln.de/de/paco_chat/24272/3/%23/','_blank')"
+      class="bg-[#7C3AED] text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-[#6A2ECD] transition mt-auto">
+      An der Uni Köln testen
+    </button>
+  </a>
 
   <!-- PACO Support -->
-  <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center flex flex-col h-full">
+  <a href="loesungen.html#support"
+     class="group block bg-white border border-[#E9D5FF] rounded-xl p-6 hover:shadow-lg hover:bg-[#E9D5FF] transition text-center flex flex-col h-full">
 
     <div class="flex justify-center mb-4">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="#7C3AED" stroke-width="2">
@@ -177,17 +182,17 @@
       </svg>
     </div>
 
-    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] mb-1">
+    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] group-hover:text-[#06B6D4] mb-1">
       PACO Support
     </h3>
-    <p class="text-base md:text-lg text-[#6B7280] mb-4 flex-grow">
+    <p class="text-base md:text-lg text-[#6B7280] flex-grow">
       Liefert rechtssichere Antworten auf Studien- und Verwaltungsfragen – direkt aus Satzungen, Richtlinien und Gesetzen.
     </p>
-
-  </div>
+  </a>
 
   <!-- PACO Dashboard -->
-  <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center flex flex-col h-full">
+  <a href="loesungen.html#dashboard"
+     class="group block bg-white border border-[#E9D5FF] rounded-xl p-6 hover:shadow-lg hover:bg-[#E9D5FF] transition text-center flex flex-col h-full">
 
     <div class="flex justify-center mb-4">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="#7C3AED" stroke-width="2">
@@ -195,82 +200,30 @@
       </svg>
     </div>
 
-    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] mb-1">
+    <h3 class="font-medium text-xl md:text-2xl text-[#1F2937] group-hover:text-[#06B6D4] mb-1">
       PACO Dashboard
     </h3>
-    <p class="text-base md:text-lg text-[#6B7280] mb-4 flex-grow">
+    <p class="text-base md:text-lg text-[#6B7280] flex-grow">
       Erkennt häufige Anliegen, zeigt Wissenslücken auf und liefert datenbasierte Ansätze zur Verbesserung Ihrer Kommunikation.
     </p>
-
-  </div>
-</div>
-</div>
-</section>
-
-
-
-<section class="mt-1 mb-16 bg-[#FFFFFF] py-16 px-6 md:px-20 text-gray-800">
-  <a href="loesungen.html"
-     class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
-    Mehr zu den Lösungen
   </a>
+</div>
+</div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-<section class="bg-[#F9F6FF] py-16 px-6 md:px-20 text-center text-gray-800">
-  <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] mb-4">
-    Erfolg in Zahlen
-  </h2>
-  <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-    Kompetent, zuverlässig, schnell – PACO überzeugt mit klaren Ergebnissen.
-  </p>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    <!-- KPI 1 -->
-    <div>
-      <div class="text-[#7C3AED] text-5xl font-bold">
-        <span class="countup" data-target="95" data-duration="2000">0</span><span>%</span>
-      </div>
-      <p class="mt-2 text-base text-gray-800 font-medium">Beantwortungsrate</p>
-    </div>
-
-    <!-- KPI 2 -->
-    <div>
-      <div class="text-[#7C3AED] text-5xl font-bold">
-        <span class="countup" data-target="99.5" data-duration="2000">0</span><span>%</span>
-      </div>
-      <p class="mt-2 text-base text-gray-800 font-medium">Korrekte Antworten</p>
-    </div>
-
-    <!-- KPI 3 -->
-    <div>
-      <div class="text-[#7C3AED] text-5xl font-bold flex justify-center items-end gap-1">
-        <span class="countup" data-target="2.9" data-duration="2000">0</span>
-        <span class="text-xl md:text-2xl text-[#7C3AED]">Sekunden</span>
-      </div>
-      <p class="mt-2 text-base text-gray-800 font-medium">&nbsp;&Oslash; Antwortzeit&nbsp</p>
-    </div>
+<!-- ───────── CTA-BALKEN: Alle Module im Überblick ───────── -->
+<section class="w-full bg-[#E9D5FF] py-8">
+  <div class="mx-auto max-w-5xl text-center">
+    <a href="loesungen.html"
+       aria-label="Alle Module im Überblick"
+       class="inline-block rounded-full bg-white px-6 py-3 text-base font-medium
+              text-[#7C3AED] shadow hover:bg-gray-100
+              focus:outline-none focus-visible:ring-4 focus-visible:ring-[#E9D5FF]">
+      Mehr&nbsp;zu&nbsp;den&nbsp;Modulen
+    </a>
   </div>
-  <p class="text-sm text-gray-500 mt-4">
-  Basierend auf dem Einsatz an der WiSo-Fakultät der Universität zu Köln (2025).
-</p>
 </section>
-
-
-
-
-
-
+<!-- ────────────────────────────────────────────────────────── -->
 
   <!-- ▼▼▼ Section: Vergleich ▾▾▾ -->
 <section id="compare" class="bg-white py-16 px-4 sm:px-6 md:px-20 text-gray-800">
@@ -438,7 +391,7 @@
 
 
 <!-- IMPLEMENTIERUNG & SICHERHEIT  ---------------------------------->
-<section id="implementation" class="mb-0 bg-[#F9F6FF] py-16 px-6 md:px-20">
+<section id="implementation" class="bg-[#F9F6FF] py-16 px-6 md:px-20">
   <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
     In 4 Wochen live – sicher & DSGVO-konform
   </h2>
@@ -449,7 +402,7 @@
     ohne Halluzinationen.
   </p>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-0">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
     <!-- Card 1: Roll-out -->
     <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 flex flex-col h-full">
       <div class="flex justify-center mb-4">
@@ -509,40 +462,38 @@
     </div>
   </div>
 
+
+
+
+<!-- ───────── CTA-BALKEN: Alle Module im Überblick ───────── -->
+
+  <div class="mx-auto max-w-5xl text-center">
+    <a href="umsetzung.html"
+       aria-label="Mehr zur Umsetzung"
+       class="inline-block rounded-full bg-white px-6 py-3 text-base font-medium
+              text-[#7C3AED] shadow hover:bg-gray-100
+              focus:outline-none focus-visible:ring-4 focus-visible:ring-[#E9D5FF]">
+      Mehr&nbsp;zur&nbsp;Umsetzung
+    </a>
+  </div>
 </section>
 <!-- ────────────────────────────────────────────────────────── -->
 
 
-<section class="mt-0 mb-16 bg-[#FFFFFF] py-16 px-6 md:px-20 text-gray-800">
-  <a href="umsetzung.html"
-     class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
-    Mehr zur Umsetzung
-  </a>
-</section>
 
-
-
-
-
-
-
-<section id="licenses" class="bg-[#F9F6FF] py-16 px-6 md:px-20 text-center text-gray-800">
+<section id="licenses" class="bg-white py-10 px-6 md:px-20 text-gray-800">
   <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+    <h2 class="text-2xl md:text-3xl font-bold text-[#7C3AED] mb-4">
       Flexible Lizenzen – transparent & modular
     </h2>
     <p class="text-lg text-gray-600 mb-6">
       PACO wird institutionell lizenziert und ist für Hochschulen jeder Größe modular buchbar – ohne versteckte Kosten oder lange Vertragsbindung.
     </p>
+    <a href="/lizenzen.html"
+       class="inline-block bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium text-base py-3 px-6 rounded-lg transition">
+      Mehr zum Lizenzmodell
+    </a>
   </div>
-</section>
-
-
-<section class="mt-0 mb-16 bg-[#FFFFFF] py-16 px-6 md:px-20 text-gray-800">
-  <a href="umsetzung.html"
-     class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
-    Mehr zu den Lizenzen
-  </a>
 </section>
 
 <section id="kontakt" class="bg-[#F9F6FF] py-16 px-6 md:px-20 text-gray-800">
