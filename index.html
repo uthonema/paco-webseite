@@ -302,44 +302,82 @@
 
 
 
-<section class="bg-[#F9F6FF] py-16 px-6 md:px-20 text-center text-gray-800">
-  <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] mb-4">
-    Erfolg in Zahlen
-  </h2>
-  <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-    Kompetent, zuverlässig, schnell – PACO überzeugt mit klaren Ergebnissen.
-  </p>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    <!-- KPI 1 -->
-    <div>
-      <div class="text-[#7C3AED] text-5xl font-bold">
-        <span class="countup" data-target="95" data-duration="2000">0</span><span>%</span>
+  <section class="bg-[#F9F6FF] py-16 px-6 md:px-20 text-center">
+    <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] mb-4">
+      Erfolg in Zahlen
+    </h2>
+    <p class="text-lg text-[#1F2937] max-w-2xl mx-auto mb-12">
+      Kompetent, zuverlässig, schnell – PACO überzeugt mit klaren Ergebnissen.
+    </p>
+  
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+  
+      <!-- KPI 1 -->
+      <div>
+        <div class="text-[#7C3AED] text-5xl font-bold" aria-live="polite" aria-label="Beantwortungsrate 95 Prozent">
+          <span class="countup" data-target="95" data-duration="1200" data-decimals="0">0</span><span>%</span>
+        </div>
+        <p class="mt-2 text-base text-[#1F2937] font-medium">Beantwortungsrate</p>
+        <p class="mt-1 text-sm md:text-base text-[#6B7280]">weniger offene Anfragen</p>
       </div>
-      <p class="mt-2 text-base text-gray-800 font-medium">Beantwortungsrate</p>
-    </div>
-
-    <!-- KPI 2 -->
-    <div>
-      <div class="text-[#7C3AED] text-5xl font-bold">
-        <span class="countup" data-target="99.7" data-duration="2000">0</span><span>%</span>
+  
+      <!-- KPI 2 -->
+      <div>
+        <div class="text-[#7C3AED] text-5xl font-bold" aria-live="polite" aria-label="Korrekte Antworten 99,7 Prozent">
+          <span class="countup" data-target="99.7" data-duration="1200" data-decimals="1">0</span><span>%</span>
+        </div>
+        <p class="mt-2 text-base text-[#1F2937] font-medium">Korrekte Antworten</p>
+        <p class="mt-1 text-sm md:text-base text-[#6B7280]">hohe Informationssicherheit</p>
       </div>
-      <p class="mt-2 text-base text-gray-800 font-medium">Korrekte Antworten</p>
-    </div>
-
-    <!-- KPI 3 -->
-    <div>
-      <div class="text-[#7C3AED] text-5xl font-bold flex justify-center items-end gap-1">
-        <span class="countup" data-target="2.9" data-duration="2000">0</span>
-        <span class="text-xl md:text-2xl text-[#7C3AED]">Sekunden</span>
+  
+      <!-- KPI 3 -->
+      <div>
+        <div class="text-[#7C3AED] text-5xl font-bold flex justify-center items-end gap-1"
+             aria-live="polite" aria-label="Durchschnittliche Antwortzeit 2,9 Sekunden">
+          <span class="countup" data-target="2.9" data-duration="1200" data-decimals="1">0</span>
+          <span class="text-xl md:text-2xl text-[#7C3AED]">Sekunden</span>
+        </div>
+        <p class="mt-2 text-base text-[#1F2937] font-medium">Ø Antwortzeit</p>
+        <p class="mt-1 text-sm md:text-base text-[#6B7280]">sofortige Auskunft für Studierende</p>
       </div>
-      <p class="mt-2 text-base text-gray-800 font-medium">&nbsp;&Oslash; Antwortzeit&nbsp</p>
+  
     </div>
-  </div>
-  <p class="text-sm text-gray-500 mt-4">
-  Basierend auf dem Einsatz an der WiSo-Fakultät der Universität zu Köln (2025).
-</p>
-</section>
+  
+    <p class="text-sm text-[#6B7280] mt-6">
+      Basierend auf dem Einsatz an der WiSo-Fakultät der Universität zu Köln (2025).
+    </p>
+  </section>
+  
+  <script>
+    (function () {
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('.countup').forEach(el => {
+        const target = parseFloat(el.dataset.target || '0');
+        const duration = parseInt(el.dataset.duration || '1200', 10);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+  
+        if (reduce) {
+          el.textContent = target.toLocaleString('de-DE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+          return;
+        }
+  
+        const startTime = performance.now();
+        const startVal = 0;
+        const diff = target - startVal;
+  
+        function tick(now) {
+          const p = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic, dezent
+          const val = startVal + diff * eased;
+          el.textContent = val.toLocaleString('de-DE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    })();
+  </script>
+  
+
 
 
 
