@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PACO Coach – Studienwahl mit KI, die zu Ihrer Hochschule passt</title>
+  <meta name="description" content="PACO Coach führt Studieninteressierte durch ein kurzes KI‑Interview, zeigt die Passung zu Studiengängen und ermöglicht Vergleiche – DSGVO‑konform, schnell implementiert."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Inter Font (Style Guide) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji'; }
+  </style>
+</head>
+<body class="bg-white text-[#1F2937]">
+
+  <!-- HEADER wird dynamisch geladen (wie auf den anderen Seiten) -->
+  <div id="site-header"></div>
+
+  <!-- HERO -->
+  <section id="hero" class="relative w-full h-[50vh] min-h-[500px] max-h-[700px]">
+    <img src="assets/paco-coach-hero.jpg" alt="Studieninteressierte nutzen PACO Coach auf einer Hochschulseite" class="absolute inset-0 w-full h-full object-cover object-top" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 flex flex-col justify-center px-6 md:px-20 pt-20 pb-8">
+      <div class="max-w-[60%]">
+        <!-- Headline gemäß Typo-Guide -->
+        <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight">
+          PACO Coach findet passende Studiengänge 
+        </h1>
+        <p class="text-purple-100 text-base md:text-lg mt-4">
+          Für Studieninteressierte. Kurzinterview, Matching, Vergleich - so wird das perfekt passende Studienprogramm gefunden. 
+        </p>
+        <div class="mt-6 flex flex-col sm:flex-row gap-3 w-fit">
+          <button onclick="go_to_interview('de')" 
+                  class="bg-white text-[#7C3AED] hover:bg-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg shadow text-base cursor-pointer transition-colors duration-200">
+            PACO Coach testen
+          </button>
+          <a href="#demo-anfrage"
+             class="bg-transparent border-2 border-white text-white hover:bg-[#6A2ECD] hover:border-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 text-base inline-block">
+            Demo anfragen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE / BENEFITS -->
+  <section id="benefits" class="bg-[#FFFFFF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Bessere Studienorientierung – weniger Anfragen bei Beratungsstellen
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-3xl mx-auto">
+        PACO Coach stellt gezielte Fragen, bewertet Interessen und Stärken und zeigt die Passung zu Studiengängen Ihrer Hochschule. Ergebnisse sind nachvollziehbar und können direkt verglichen werden.
+      </p>
+
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.99 9.99 0 01-4.9-1.3L3 20l1.3-3.9A9.99 9.99 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Geführtes Kurzinterview</h3>
+          <p class="text-[#6B7280]">Präzise Fragen, die Interessen & Ziele sichtbar machen – in wenigen Minuten.</p>
+        </li>
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Matching zu Studien&shy;gängen</h3>
+          <p class="text-[#6B7280]">Transparente Passungen zu Bachelor‑/Master‑Programmen Ihrer Hochschule.</p>
+        </li>
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Vergleiche & nächste Schritte</h3>
+          <p class="text-[#6B7280]">Programme nebeneinander vergleichen, Merklisten erstellen, Beratungs&shy;empfehlungen erhalten.</p>
+        </li>
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Entlastung für Ihr Team</h3>
+          <p class="text-[#6B7280]">Weniger Standardanfragen, mehr Zeit für qualifizierte Beratungsgespräche.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- BEISPIELE / DEMO-AUSSCHNITTE -->
+  <section id="beispiele" class="bg-[#F9F6FF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        So arbeitet PACO Coach 
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-2xl mx-auto">Strukturierte Beratung in drei Schritten – mit nachvollziehbaren Ergebnissen.</p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Schritt 1 -->
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6">
+         <h3 class="font-semibold text-[#7C3AED] text-xl mb-3">1 · Interview</h3>
+          <img src="assets/paco-coach-screen_1.jpg" alt="Screenshot des Kurzinterviews mit PACO Coach" class="my-4 rounded-lg shadow-md w-full h-auto" loading="lazy" />
+        </div>
+        <!-- Schritt 2 -->
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6">
+            <h3 class="font-semibold text-[#7C3AED] text-xl mb-3">2 · Empfehlung</h3>
+          <img src="assets/paco-coach-screen_2.jpg" alt="Screenshot des Kurzinterviews mit PACO Coach" class="my-4 rounded-lg shadow-md w-full h-auto" loading="lazy" />
+        </div>
+        <!-- Schritt 3 -->
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6">
+            <h3 class="font-semibold text-[#7C3AED] text-xl mb-3">3 · Vergleich</h3>
+          <img src="assets/paco-coach-screen_3.jpg" alt="Screenshot des Kurzinterviews mit PACO Coach" class="my-4 rounded-lg shadow-md w-full h-auto" loading="lazy" />
+  
+        </div>
+      </div>
+
+          <!-- Curiosity CTA jetzt am Ende der Funktionen-Section -->
+      <div class="mt-12 text-center">
+        <a href="javascript:void(0);" onclick="go_to_interview('de')"
+                class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
+          PACO Coach testen
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ANALYTICS -->
+  <section id="analytics" class="bg-[#FFFFFF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Analytics & Insights
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-2xl mx-auto">
+        PACO hilft die Interessen, Wünsche und Auswahlkriterien Studieninteressierter zu verstehen.  So können Sie die Attraktivität Ihrer Studienprogramme erhöhen und Marketing und Studienberatung verbessern.
+      </p>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="space-y-3 text-[#1F2937]">
+            <div class="flex items-start">
+              <span class="text-[#06B6D4] mr-2">✓</span>
+              <span class="text-base md:text-lg">Attraktivität Studiengänge erkennen</span>
+            </div>
+            <div class="flex items-start">
+              <span class="text-[#06B6D4] mr-2">✓</span>
+              <span class="text-base md:text-lg">Ziele und Präferenzen Studieninteressierter verstehen</span>
+            </div>
+            <div class="flex items-start">
+              <span class="text-[#06B6D4] mr-2">✓</span>
+              <span class="text-base md:text-lg">Informationbereitstellung verbessern  </span>
+            </div>
+            <div class="flex items-start">
+              <span class="text-[#06B6D4] mr-2">✓</span>
+              <span class="text-base md:text-lg">Beratung optimieren und Abbruchquoten senken</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="assets/Paco-coach-analytics.jpg" 
+               alt="PACO Analytics Dashboard zeigt Häufigkeitsverteilung von Studienanfragen und Antwortqualität-Metriken" 
+               class="rounded-xl shadow-lg w-full h-auto cursor-pointer hover:shadow-xl transition-shadow duration-200" 
+               loading="lazy"
+               onclick="openModal(this)"/>
+        </div>
+      </div>
+
+      <!-- Qualified Lead CTA nach Analytics -->
+      <div class="mt-12 text-center">
+        <a href="#demo-anfrage"
+           class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
+          Demo anfragen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMIZATION & INTEGRATION -->
+  <section id="customization" class="bg-[#F9F6FF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+         Ihre Studiengänge. Ihr Design
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-3xl mx-auto">
+        Passen Sie PACO Coach an Ihre Hochschule an, nutzen Sie Informationen von Ihren Studiengängen und Ihre Matching-Kriterien. Gestalten Sie das Design nach Ihren Vorgaben und sorgen Sie für eine sichere und nahtlose Einbindung.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Studiengänge & Matching -->
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-8 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Studiengänge & Matching</h3>
+          <p class="text-[#6B7280]">Bachelor‑/Master‑Programme, Ihre Anforderungen, Ihre Auswahlkriterien, Ihre Gewichtungen. So stellen sie sicher, dass Ihre zukünfigen Studierenden top zu Ihnen passen.</p>
+        </div>
+
+        <!-- Design & Marke -->
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-8 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Design & Marke</h3>
+          <p class="text-[#6B7280]">Logo, Farben, Formulierungen – flexibel an Ihre CI anpassbar. So wir klar, dass es um Ihre Hochschule geht. </p>
+        </div>
+
+        <!-- Einbindung -->
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-8 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Einbindung</h3>
+          <p class="text-[#6B7280]">Widget, iFrame, Sub‑Seite oder App‑Integration – mit Rollen & Rechten. So können sich alle Mitabeitenden optimal einbringen.</p>
+        </div>
+
+        <!-- Sicherheit & Hosting -->
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-8 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Sicherheit & Hosting</h3>
+          <p class="text-[#6B7280]">EU‑Hosting oder On‑Prem, alle personenbezogenen Daten bleiben in der Hoheit des Interviewten. Studieninteressierte entscheiden, od und an wen sie sie weitergeben.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-white py-16 px-6 md:px-20">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#7C3AED] text-center mb-10">Häufige Fragen</h2>
+        <div class="divide-y divide-[#E9D5FF] border border-[#E9D5FF] rounded-2xl overflow-hidden">
+          
+          <div class="p-6 faq-item">
+            <div class="flex cursor-pointer items-center justify-between text-lg font-medium text-[#1F2937] faq-header">
+              <span>Wie wird das Matching konfiguriert?</span>
+              <svg class="w-5 h-5 text-[#7C3AED] transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+            <div class="mt-3 text-[#6B7280] faq-content hidden">
+              <p>Wir hinterlegen Kriterien pro Studiengang (z. B. Interessen, Stärken, Sprachniveau). Diese lassen sich je Fakultät feinjustieren und versionieren.</p>
+            </div>
+          </div>
+          
+          <div class="p-6 faq-item">
+            <div class="flex cursor-pointer items-center justify-between text-lg font-medium text-[#1F2937] faq-header">
+              <span>Kann PACO Coach bilingual arbeiten?</span>
+              <svg class="w-5 h-5 text-[#7C3AED] transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+            <div class="mt-3 text-[#6B7280] faq-content hidden">
+              <p>Ja. Deutsch/Englisch sind üblich. Fast jede weitere Sprache ist möglich.</p>
+            </div>
+          </div>
+          
+          <div class="p-6 faq-item">
+            <div class="flex cursor-pointer items-center justify-between text-lg font-medium text-[#1F2937] faq-header">
+              <span>Wie erfolgt die Einbindung auf der Webseite?</span>
+              <svg class="w-5 h-5 text-[#7C3AED] transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+            <div class="mt-3 text-[#6B7280] faq-content hidden">
+              <p>Als eingebettete Komponente oder verlinkte Seite. Design (Logo, Farben) wird an Ihr CI angepasst.</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+
+  <!-- FINALES KONTAKTFORMULAR -->
+  <section id="demo-anfrage" class="bg-[#7C3AED] py-16 px-6 md:px-20 text-white">
+    <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-8">
+      Demo anfragen oder Kontakt aufnehmen
+    </h2>
+
+    <form id="demoFormCoach" class="max-w-xl mx-auto grid gap-6">
+      <input type="text" id="nameCoach" name="name" placeholder="Name"
+             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
+      <input type="email" id="emailCoach" name="email" placeholder="Hochschul-E-Mail"
+             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
+      <input type="text" id="institutionCoach" name="institution" placeholder="Hochschule / Einrichtung"
+             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
+      <textarea id="messageCoach" name="message" rows="4" placeholder="Nachricht (optional)"
+                class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]"></textarea>
+
+      <label class="flex items-start text-sm text-white">
+        <input type="checkbox" id="consentCoach" required class="mt-1 mr-2 accent-white">
+        Ich habe die &nbsp; <a href="datenschutz.html" class="text-white underline hover:text-gray-200" target="_blank">Datenschutzerklärung</a>&nbsp; gelesen.
+      </label>
+
+      <button id="submitBtnCoach" type="button"
+              class="bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition"
+              disabled>
+        Bitte füllen Sie das Formular aus
+      </button>
+    </form>
+  </section>
+
+  <!-- FOOTER wird dynamisch geladen -->
+  <div id="site-footer"></div>
+
+  <!-- Modal für Bildvergrößerung -->
+  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+    <div class="relative max-w-5xl max-h-[90vh] mx-4">
+      <img id="modalImage" src="" alt="" class="max-w-full max-h-full rounded-lg shadow-2xl">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300 transition-colors">
+        ×
+      </button>
+    </div>
+  </div>
+
+<script>
+let production_code = true;  
+function isMobileDevice() {
+    // Modern method using userAgentData
+    if (navigator.userAgentData) {
+      return navigator.userAgentData.mobile;
+    }
+  
+    // Fallback for older browsers
+    const ua = navigator.userAgent;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  
+    const isMobileUA = /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    
+    const isIPad = /iPad/.test(ua) || 
+                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  
+    return isMobileUA || isIPad || isTouchDevice;
+  }
+  function go_to_chat(lang) {
+      var backSite = encodeURIComponent(window.location.href);
+      if (production_code){
+            var pacoBaseUrl= `https://study-coach.uni-koeln.de/${lang}/paco_chat/14820/3/%23/demo/`;
+      } else {
+            var pacoBaseUrl= `http://localhost:8000/${lang}/paco_chat/14820/3/%23/demo/`
+      }      
+      var urlWithBackSite = pacoBaseUrl + (pacoBaseUrl.indexOf('?') === -1 ? '?' : '&') + "back_site=" + backSite;
+      if (isMobileDevice()) {
+        location.href = urlWithBackSite;
+      } else {
+        window.open(pacoBaseUrl, "KleinesFenster", "width=600,height=2000,resizable=no, toolbar=yes");
+      }
+  }
+  function go_to_interview(lang) {
+      var backSite = encodeURIComponent(window.location.href);
+      
+      if (isMobileDevice()) {
+        if (production_code){
+            var pacoBaseUrl= `https://study-coach.uni-koeln.de/${lang}/question/1/0/dummy/demo/`;
+        } else {
+            var pacoBaseUrl= `http://localhost:8000/${lang}/question/1/0/dummy/demo/`;
+        }
+        var urlWithBackSite = pacoBaseUrl + (pacoBaseUrl.indexOf('?') === -1 ? '?' : '&') + "back_site=" + backSite;
+        location.href = urlWithBackSite;
+      } else {
+        if (production_code){
+            var pacoBaseUrl= `https://study-coach.uni-koeln.de/${lang}/question/1/0/%23/demo/`;
+        } else {
+            var pacoBaseUrl= `http://localhost:8000/${lang}/question/1/0/%23/demo/`;
+        }
+        window.open(pacoBaseUrl, "KleinesFenster", "width=600,height=2000,resizable=no");
+      }
+  }
+</script>
+
+
+  <!-- FOOTER wird dynamisch geladen -->
+  <div id="site-footer"></div>
+
+  <!-- Loader für Header/Footer (failsafe, falls globales Script nicht eingebunden ist) -->
+  <script>
+  (async () => {
+    try {
+      if (!document.querySelector('#site-header').dataset.loaded) {
+        const h = await fetch('header.html');
+        if (h.ok) {
+          document.querySelector('#site-header').innerHTML = await h.text();
+          document.querySelector('#site-header').dataset.loaded = '1';
+        }
+      }
+    } catch(e) {}
+    try {
+      if (!document.querySelector('#site-footer').dataset.loaded) {
+        const f = await fetch('footer.html');
+        if (f.ok) {
+          document.querySelector('#site-footer').innerHTML = await f.text();
+          document.querySelector('#site-footer').dataset.loaded = '1';
+        }
+      }
+    } catch(e) {}
+    // Mobile menu toggle (aus header.html bekannt)
+    document.addEventListener('click', (ev) => {
+      const btn = ev.target.closest('#menu-toggle');
+      if (btn) {
+        const mm = document.getElementById('mobile-menu');
+        if (mm) mm.classList.toggle('hidden');
+      }
+    });
+  })();
+
+  // FAQ Accordion - nur ein Element auf einmal geöffnet
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const header = item.querySelector('.faq-header');
+      const content = item.querySelector('.faq-content');
+      const icon = item.querySelector('.faq-icon');
+      
+      header.addEventListener('click', () => {
+        // Prüfen, ob dieses Element bereits aktiv ist
+        const isActive = !content.classList.contains('hidden');
+        
+        // Alle FAQs schließen und Icons zurücksetzen
+        document.querySelectorAll('.faq-content').forEach(el => {
+          el.classList.add('hidden');
+        });
+        
+        document.querySelectorAll('.faq-icon').forEach(icon => {
+          icon.style.transform = 'rotate(0deg)';
+        });
+        
+        // Wenn das Element nicht aktiv war, öffnen wir es
+        if (!isActive) {
+          content.classList.remove('hidden');
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  });
+
+  // Bild-Modal Funktionen
+  function openModal(img) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.classList.remove('hidden');
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+  }
+
+  function closeModal() {
+    document.getElementById('imageModal').classList.add('hidden');
+  }
+</script>
+</body>
+</html>

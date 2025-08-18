@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PACO ist in nur vier Wochen einsatzbereit</title>
+  <meta name="description" content="PACO Einführung: So führen Hochschulen die modulare KI-Assistenz in nur 4 Wochen ein – DSGVO-konform, flexibel lizenziert und sicher gehostet."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Inter Font (Style Guide) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Verhindert, dass Elemente unter dem Header versteckt werden */
+    html {
+      scroll-padding-top: 100px; /* Anpassen entsprechend der Header-Höhe plus Puffer */
+      scroll-behavior: smooth;
+    }
+    
+    /* Für ältere Browser, die scroll-padding-top nicht unterstützen */
+    #kontakt {
+      scroll-margin-top: 100px;
+    }
+
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji'; }
+  </style>
+</head>
+<body class="bg-white text-[#1F2937]">
+
+  <!-- HEADER wird dynamisch geladen -->
+  <div id="site-header"></div>
+
+  <!-- HERO -->
+  <section id="hero" class="relative w-full h-[50vh] min-h-[500px] max-h-[700px]">
+    <!-- Bild: gleiche Ästhetik wie PACO Chat; kann bei Bedarf angepasst werden -->
+    <img src="assets/paco-einfuehrung-hero.jpg" alt="Hochschulumfeld: Einführung von PACO" class="absolute inset-0 w-full h-full object-cover object-top" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 flex flex-col justify-center px-6 md:px-20 pt-20 pb-8">
+      <div class="max-w-[60%]">
+        <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight">
+          PACO ist in nur vier Wochen einsatzbereit
+        </h1>
+        <p class="text-purple-100 text-base md:text-lg mt-4">
+          Minimaler Aufwand, maximale Entlastung: Die KI-Assistenz, die von Anfang an Mehrwert für Ihre Hochschule schafft.
+        </p>
+        <div class="mt-6 flex flex-col sm:flex-row gap-3 w-fit">
+          <a href="#demo-anfrage"
+             class="bg-white text-[#7C3AED] hover:bg-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg shadow text-base inline-block transition-colors duration-200">
+            Informationen anfordern
+          </a>
+          <a href="#demo-anfrage"
+             class="bg-transparent border-2 border-white text-white hover:bg-[#6A2ECD] hover:border-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 text-base inline-block">
+            Pilot-Projekt starten
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARUM EINFÜHRUNG -->
+  <section id="why" class="bg-[#FFFFFF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Warum Hochschulen PACO einführen
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-2xl mx-auto">
+        PACO beantwortet Standardanfragen zuverlässig, entlastet Studienberatung und Verwaltung und ist in nur vier Wochen einsatzbereit.
+      </p>
+
+      <ul class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-0">
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Entlastung</h3>
+          <p class="text-[#6B7280]">Standardanfragen automatisch beantworten – mehr Zeit für persönliche Beratung.</p>
+        </li>
+
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Servicequalität</h3>
+          <p class="text-[#6B7280]">Präzise, konsistente Antworten mit Quellen – rund um die Uhr verfügbar.</p>
+        </li>
+
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Schnelle Einführung</h3>
+          <p class="text-[#6B7280]">Go‑Live in 4 Wochen – inkl. Schulung und Integration.</p>
+        </li>
+      </ul>
+      
+      <!-- CTA nach Warum-Section -->
+      <div class="text-center mt-12">
+        <a href="#demo-anfrage" 
+           class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
+          Kostenlose Beratung anfragen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIVERSITÄTSPREIS -->
+  <section id="preis" class="bg-[#F9F6FF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Ausgezeichnet: Universitätspreis der Uni Köln
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-3xl mx-auto">
+        PACO wurde 2024 mit dem Universitätspreis Köln im Bereich Verwaltung & Wissensmanagement ausgezeichnet.
+      </p>
+
+      <!-- DSGVO-konformes Video Embed -->
+      <div class="max-w-4xl mx-auto">
+        <div id="video-container" class="relative bg-gray-100 rounded-xl shadow-lg overflow-hidden aspect-video cursor-pointer group"
+             onclick="loadVideo()" 
+             style="background-image: url('https://img.youtube.com/vi/qmosIjSPMvs/maxresdefault.jpg'); background-size: cover; background-position: center;">
+          
+          <!-- Overlay mit Play-Button -->
+          <div id="video-overlay" class="absolute inset-0 bg-black/30 flex items-center justify-center transition-all duration-300 group-hover:bg-black/20">
+            <div class="bg-white/90 backdrop-blur rounded-full p-6 transition-transform duration-300 group-hover:scale-110">
+              <svg class="w-12 h-12 text-[#7C3AED] ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Datenschutz-Hinweis -->
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="bg-black/80 backdrop-blur rounded-lg p-3 text-white text-sm">
+              <p class="mb-2"><strong>Datenschutz-Hinweis:</strong></p>
+              <p>Durch Klick auf "Abspielen" wird das Video von YouTube geladen. Dabei werden Daten an YouTube übertragen.</p>
+              <div class="mt-2 flex gap-2">
+                <a href="https://policies.google.com/privacy" target="_blank" class="text-white underline hover:text-gray-300">YouTube Datenschutz</a>
+                <span>•</span>
+                <a href="datenschutz.html" target="_blank" class="text-white underline hover:text-gray-300">Unsere Datenschutzerklärung</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fallback für fehlende Poster -->
+        <noscript>
+          <div class="bg-gray-100 border border-[#E9D5FF] rounded-xl p-8 text-center">
+            <p class="text-[#6B7280] mb-4">Video nicht verfügbar ohne JavaScript.</p>
+            <a href="https://www.youtube.com/watch?v=qmosIjSPMvs" target="_blank" 
+               class="inline-block bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-2 px-4 rounded-lg transition">
+              Video auf YouTube ansehen
+            </a>
+          </div>
+        </noscript>
+      </div>
+      
+      <!-- CTA nach Video -->
+      <div class="text-center mt-8">
+        <a href="#demo-anfrage" 
+           class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
+          Pilot-Projekt starten
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPLEMENTIERUNG -->
+  <section id="implementierung" class="bg-[#FFFFFF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Implementierung: In vier Wochen zum Go‑Live
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center max-w-3xl mx-auto mb-8">
+        Standard‑Setup in acht Schritten. Wir führen PACO gemeinsam mit Ihrem Team ein – schlank, transparent und abgestimmt auf Ihre IT‑Vorgaben.
+      </p>
+
+      <!-- Infografik -->
+      <figure class="max-w-5xl mx-auto">
+        <img src="assets/8-schritte-implementierung.jpg"
+             alt="Implementierungsprozess in 8 Schritten: Aufgabendefinition, Systeminstallation, Datenintegration, Customization, Design, Schulung, Integration, Analyse & Optimierung."
+             class="w-full h-auto rounded-xl shadow-md ring-1 ring-[#E9D5FF] cursor-pointer hover:shadow-lg transition-shadow duration-200"
+             loading="lazy"
+             onclick="openModal(this)"/>
+      </figure>
+
+      <div class="text-center mt-10">
+        <a href="#demo-anfrage"
+           class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
+          Technisches Gespräch vereinbaren
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATENSCHUTZ & SICHERHEIT -->
+  <section id="sicherheit" class="bg-[#F9F6FF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Datenschutz & Sicherheit
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-4 text-[#1F2937]">Datenschutz – DSGVO-konform</h3>
+          <ul class="space-y-2 text-[#1F2937]">
+            <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> Keine Speicherung personenbezogener Daten.</li>
+            <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> Hosting in der EU oder On‑Prem. Sie entscheiden.</li>
+            <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> Kein Tracking, keine Cookies.</li>
+            <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> DSGVO-konform.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-4 text-[#1F2937]">Antwortqualität – nachvollziehbar</h3>
+          <ul class="space-y-2 text-[#1F2937]">
+            <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> RAG‑Ansatz: Antworten aus geprüften, freigegebenen Quellen.</li>
+            <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> Minimales Halluzinationsrisiko.</li>
+            <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> Bei unklarer Datenlage Empfehlung zur persönlichen Beratung.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINALES KONTAKTFORMULAR -->
+  <section id="demo-anfrage" class="bg-[#7C3AED] py-16 px-6 md:px-20 text-white">
+    <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-8">
+      Informationen anfordern oder Pilot-Projekt starten
+    </h2>
+
+    <form id="demoFormEinfuehrung" class="max-w-xl mx-auto grid gap-6">
+      <input type="text" id="nameEinfuehrung" name="name" placeholder="Name"
+             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
+      <input type="email" id="emailEinfuehrung" name="email" placeholder="Hochschul-E-Mail"
+             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
+      <input type="text" id="institutionEinfuehrung" name="institution" placeholder="Hochschule / Einrichtung"
+             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
+      <textarea id="messageEinfuehrung" name="message" rows="4" placeholder="Nachricht (optional)"
+                class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]"></textarea>
+
+      <label class="flex items-start text-sm text-white">
+        <input type="checkbox" id="consentEinfuehrung" required class="mt-1 mr-2 accent-white">
+        Ich habe die &nbsp; <a href="datenschutz.html" class="text-white underline hover:text-gray-200" target="_blank">Datenschutzerklärung</a>&nbsp; gelesen.
+      </label>
+
+      <button id="submitBtnEinfuehrung" type="button"
+              class="bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition"
+              disabled>
+        Bitte füllen Sie das Formular aus
+      </button>
+    </form>
+  </section>
+
+  <!-- FOOTER wird dynamisch geladen -->
+  <div id="site-footer"></div>
+
+  <!-- Modal für Bildvergrößerung (ERSETZT das alte Modal) -->
+  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+    <div class="relative max-w-5xl max-h-[90vh] mx-4">
+      <img id="modalImage" src="" alt="" class="max-w-full max-h-full rounded-lg shadow-2xl">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300 transition-colors">
+        ×
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Modal Funktionen (ERSETZT die alten Funktionen)
+    function openModal(img) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      modal.classList.remove('hidden');
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Demo Form Handler für PACO Einführung Seite
+    (function() {
+      const form     = document.getElementById('demoFormEinfuehrung');
+      if (!form) return;
+
+      const submit   = document.getElementById('submitBtnEinfuehrung');
+      const fields   = ['nameEinfuehrung','emailEinfuehrung','institutionEinfuehrung'];
+      const consent  = document.getElementById('consentEinfuehrung');
+      const emailRe  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function allFilled() {
+        return fields.every(id => {
+          const el = document.getElementById(id);
+          return el && el.value.trim().length > 0;
+        });
+      }
+
+      function emailValid() {
+        const em = document.getElementById('emailEinfuehrung');
+        return em && emailRe.test(em.value.trim());
+      }
+
+      function validate() {
+        if ( allFilled() && emailValid() && consent.checked ) {
+          submit.disabled = false;
+          submit.textContent = 'Demo-Anfrage senden';
+          submit.className = 'bg-white text-[#7C3AED] hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
+        } else {
+          submit.disabled = true;
+          submit.textContent = 'Bitte füllen Sie das Formular aus';
+          submit.className = 'bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
+        }
+      }
+
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', validate);
+      });
+      if (consent) consent.addEventListener('change', validate);
+
+      submit.addEventListener('click', function(){
+        const nameVal  = document.getElementById('nameEinfuehrung').value.trim();
+        const emailVal = document.getElementById('emailEinfuehrung').value.trim();
+        const instVal  = document.getElementById('institutionEinfuehrung').value.trim();
+        const msgVal   = document.getElementById('messageEinfuehrung').value.trim();
+
+        const to      = 'info@ai-paco.de';
+        const cc      = emailVal;
+        const subject = 'PACO Einführung Demo-Anfrage von ' + nameVal;
+        const body    = `Name: ${nameVal}\nHochschule: ${instVal}\nE-Mail: ${emailVal}\n\nNachricht:\n${msgVal}\n\n--- Anfrage über PACO Einführung Seite ---`;
+
+        window.location.href = `mailto:${encodeURIComponent(to)}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+
+      validate();
+    })();
+
+    // Event Listener für Escape-Taste und Klick außerhalb
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.id === 'imageModal') {
+        closeModal();
+      }
+    });
+
+    // Header Loading
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('site-header').innerHTML = data;
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+          });
+        }
+      })
+      .catch(console.error);
+
+    // Footer Loading
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-footer').innerHTML = html;
+      })
+      .catch(console.error);
+
+    // Verbessere das Scroll-Verhalten für Anker-Links
+    document.addEventListener('DOMContentLoaded', function() {
+      // Alle Anker-Links innerhalb der Seite auswählen
+      const anchorLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
+      
+      anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            // Position des Zielelements + Offset für Header-Höhe
+            const headerOffset = 100; // Anpassen nach Header-Höhe + extra Abstand
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            // Smooth Scroll zum Zielelement mit Offset
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

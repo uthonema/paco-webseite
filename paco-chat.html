@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PACO Chat – KI-Assistenz für Hochschulen</title>
+  <meta name="description" content="PACO Chat beantwortet Fragen zu Studium und Verwaltung für Studieninteressierte, Studierende und Mitarbeitende – zuverlässig, DSGVO-konform, 24/7."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Inter Font (Style Guide) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji'; }
+  </style>
+</head>
+<body class="bg-white text-[#1F2937]">
+
+  <!-- HEADER wird dynamisch geladen -->
+  <div id="site-header"></div>
+
+  <!-- HERO -->
+  <section id="hero" class="relative w-full h-[50vh] min-h-[500px] max-h-[700px]">
+    <img src="assets/paco-chat-hero.jpg" alt="Nutzeroberfläche von PACO Chat" class="absolute inset-0 w-full h-full object-cover object-top" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 flex flex-col justify-center px-6 md:px-20 pt-20 pb-8">
+      <div class="max-w-[60%]">
+        <!-- Hero Headline - OPTIMIERT -->
+        <h1 class="text-white text-3xl md:text-5xl font-bold leading-tight">
+          PACO Chat beantwortet Fragen über Studium und Hochschule 
+        </h1>
+
+        <!-- Subheadline - OPTIMIERT -->
+        <p class="text-purple-100 text-base md:text-lg mt-4">
+          Für Studieninteressierte, Studierende und Mitarbeitende. Zuverlässig, DSGVO-konform und mit zertifizierten Quellen.
+        </p>
+
+        <!-- CTA Buttons - Strategisch optimiert -->
+        <div class="mt-6 flex flex-col sm:flex-row gap-3 w-fit">
+          <button onclick="go_to_chat('de')" 
+                  class="bg-white text-[#7C3AED] hover:bg-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg shadow text-base cursor-pointer transition-colors duration-200">
+            PACO Chat testen
+          </button>
+          <a href="#demo-anfrage"
+             class="bg-transparent border-2 border-white text-white hover:bg-[#6A2ECD] hover:border-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 text-base inline-block">
+            Demo anfragen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNKTIONEN -->
+  <section id="funktionen" class="bg-[#FFFFFF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Fragen automatisch beantworten. Zeit für Mitarbeitende schaffen
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-2xl mx-auto">
+        Ein Chat für alle Fragen: Bewerbungs-, Studien- und Verwaltungsfragen werden präzise beantwortet und bei Bedarf wird an die richtige Stelle weitergeleitet.
+      </p>
+
+      <ul class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Antwortet alle Fragen</h3>
+          <p class="text-[#6B7280]">Auch komplexe Anliegen werden sicher und konsistent beantwortet.</p>
+        </li>
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Verweist auf Quellen</h3>
+          <p class="text-[#6B7280]">Transparente Antworten mit direkten Links zu offiziellen Hochschulseiten.</p>
+        </li>
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Leitet sinnvoll weiter</h3>
+          <p class="text-[#6B7280]">Erkennt Sonderfälle und verweist gezielt an Beratung & Zuständigkeiten.</p>
+        </li>
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Lernt gezielt dazu</h3>
+          <p class="text-[#6B7280]">Nutzt freigegebene Webseiten, Dokumente & Newsfeeds – versioniert und nachvollziehbar.</p>
+        </li>
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Kein Halluzinieren</h3>
+          <p class="text-[#6B7280]">Antworten nur aus verifizierten, freigegebenen Quellen (RAG-Ansatz).</p>
+        </li>
+        <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">DSGVO-konform</h3>
+          <p class="text-[#6B7280]">EU-Hosting oder On-Prem, keine personenbezogenen Daten, Logging nach Vereinbarung.</p>
+        </li>
+      </ul>
+
+      <!-- Curiosity CTA jetzt am Ende der Funktionen-Section -->
+      <div class="mt-12 text-center">
+        <a href="javascript:void(0);" onclick="go_to_chat('de')"
+                class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
+          PACO Chat testen
+        </a>
+      </div>
+
+   </div>
+  </section>
+   
+  <!-- DIESE ÜBERFLÜSSIGE SECTION WIRD KOMPLETT ENTFERNT -->
+  
+
+  <!-- BEISPIELE -->
+  <section id="beispiele" class="bg-[#F9F6FF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Fragen stellen, konkrete Antworten erhalten
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-2xl mx-auto">Sehen Sie, wie PACO Chat typische Hochschul-Anfragen intelligent beantwortet und weiterleitet.</p>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6">
+          <div class="min-h-[7rem]">
+            <p class="text-sm font-medium text-[#7C3AED] mb-1">Studieninteressierte</p>
+            <h3 class="font-semibold text-xl mb-2 hyphens-auto" lang="de">„Muss ich Englischkenntnisse nachweisen?"</h3>
+          </div>
+          <div class="bg-gray-50 border-l-4 border-[#7C3AED] p-3 text-sm">
+            <p class="text-[#6B7280] hyphens-auto" lang="de">Ja, musst du Englischkenntnisse auf dem Niveau B2 (GER) nachweisen. Das kannst du z.B. durch dein Abiturzeugnis oder durch anerkannte Tests wie TOEFL machen.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6">
+          <div class="min-h-[7rem]">
+            <p class="text-sm font-medium text-[#7C3AED] mb-1">Studierende</p>
+            <h3 class="font-semibold text-xl mb-2 hyphens-auto" lang="de">„Wie melde ich mich zur Prüfung an?"</h3>
+          </div>
+          <div class="bg-gray-50 border-l-4 border-[#7C3AED] p-3 text-sm">
+            <p class="text-[#6B7280] hyphens-auto" lang="de">Prüfungsanmeldungen erfolgen über <span class="underline">KLIPS</span>. Logge dich mit deinem Smail-Account ein, gehe auf "Studienstatus" und wähle deinen Studiengang aus.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6">
+          <div class="min-h-[7rem]">
+            <p class="text-sm font-medium text-[#7C3AED] mb-1">Mitarbeitende</p>
+            <h3 class="font-semibold text-xl mb-2 hyphens-auto" lang="de">„Kann ich einen Masterstudierenden als WHB beschäftigen?"</h3>
+          </div>
+          <div class="bg-gray-50 border-l-4 border-[#7C3AED] p-3 text-sm">
+            <p class="text-[#6B7280] hyphens-auto" lang="de">Ja, wenn er bereits einen ersten Hochschulabschluss erworben hat und an der Universität immatrikuliert ist (<span class="underline">Hilfskräfteordnung</span>).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+  <!-- ANALYTICS -->
+  <section id="analytics" class="bg-[#FFFFFF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Analytics & Insights
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-2xl mx-auto">
+        PACO identifiziert die Themen, zu denen häufig Fragen gestellt werden, erkennt Wissenslücken und misst die Beratungsqualität. Ideal zur Weiterentwicklung von Marketing, Webseiten und Studienberatung.
+      </p>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="space-y-3 text-[#1F2937]">
+            <div class="flex items-start">
+              <span class="text-[#06B6D4] mr-2">✓</span>
+              <span class="text-base md:text-lg">Häufigste Anliegen identifizieren</span>
+            </div>
+            <div class="flex items-start">
+              <span class="text-[#06B6D4] mr-2">✓</span>
+              <span class="text-base md:text-lg">Wissenslücken erkennen und priorisieren</span>
+            </div>
+            <div class="flex items-start">
+              <span class="text-[#06B6D4] mr-2">✓</span>
+              <span class="text-base md:text-lg">Antwortqualität messen und optimieren</span>
+            </div>
+            <div class="flex items-start">
+              <span class="text-[#06B6D4] mr-2">✓</span>
+              <span class="text-base md:text-lg">Studierende besser verstehen und Informationsbereitstellung optimieren</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="assets/Paco-chat analytics.jpg" 
+               alt="PACO Analytics Dashboard zeigt Häufigkeitsverteilung von Studienanfragen und Antwortqualität-Metriken" 
+               class="rounded-xl shadow-lg w-full h-auto cursor-pointer hover:shadow-xl transition-shadow duration-200" 
+               loading="lazy"
+               onclick="openModal(this)"/>
+        </div>
+      </div>
+
+      <!-- Qualified Lead CTA nach Analytics -->
+      <div class="mt-12 text-center">
+        <a href="#demo-anfrage"
+           class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
+          Demo anfragen
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  
+  <!-- ANPASSUNG -->
+  <section id="anpassung" class="bg-[#F9F6FF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Perfekt anpassbar. Nahtlos integrierbar
+      </h2>
+      <p class="text-lg text-[#6B7280] text-center mb-12 max-w-2xl mx-auto">
+        Passen Sie PACO Chat an Ihre Hochschule an, integrieren Sie zentrale Wissensquellen, gestalten Sie das Design nach Ihren Vorgaben und sorgen Sie für eine sichere und nahtlose Einbindung.
+      </p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Wissensquellen</h3>
+          <p class="text-[#6B7280]">Webseiten, Ordnungen (PDF), Handbücher, Newsfeeds – zentral indexiert und versioniert.</p>
+        </div>
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <g stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <circle cx="10" cy="6" r="2"></circle>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <circle cx="14" cy="12" r="2"></circle>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+                <circle cx="8" cy="18" r="2"></circle>
+              </g>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Design & Marke</h3>
+          <p class="text-[#6B7280]">Logo, Farben, Formulierungen – flexibel an Ihre CI anpassbar.</p>
+        </div>
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Einbindung</h3>
+          <p class="text-[#6B7280]">Widget, iFrame, Sub-Seite oder App-Integration – mit Rollen & Rechten.</p>
+        </div>
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex items-center justify-center mb-4 mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-2">Sicherheit & Hosting</h3>
+          <p class="text-[#6B7280]">EU-Hosting oder On-Prem, keine personenbezogenen Daten, Audits möglich.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-[#F9F6FF] py-16 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-[#7C3AED] text-center leading-relaxed md:leading-[1.3] mb-6 md:mb-8">
+        Häufige Fragen
+      </h2>
+      <div class="max-w-4xl mx-auto bg-white border border-[#E9D5FF] rounded-2xl divide-y divide-[#E9D5FF]">
+        <!-- Wie vermeidet PACO Halluzinationen? -->
+        <div class="p-6 faq-item">
+          <div class="flex items-center justify-between cursor-pointer list-none focus:outline-none faq-header">
+            <span class="font-medium text-[#1F2937]">Wie vermeidet PACO Halluzinationen?</span>
+            <svg class="w-5 h-5 text-[#7C3AED] transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div class="mt-3 text-[#6B7280] faq-content hidden">
+            <p>Durch RAG mit ausschließlich freigegebenen Quellen, strikte Zitierung und Antworten nur im gesicherten Kontext.</p>
+          </div>
+        </div>
+
+        <!-- Wie wird der Chat eingebunden? -->
+        <div class="p-6 faq-item">
+          <div class="flex items-center justify-between cursor-pointer list-none focus:outline-none faq-header">
+            <span class="font-medium text-[#1F2937]">Wie wird der Chat eingebunden?</span>
+            <svg class="w-5 h-5 text-[#7C3AED] transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div class="mt-3 text-[#6B7280] faq-content hidden">
+            <p>Als Widget, iFrame oder Sub-Seite. Dashboard & Rollen für Bereitstellung und Pflege sind enthalten.</p>
+          </div>
+        </div>
+
+        <!-- Ist PACO DSGVO-konform? -->
+        <div class="p-6 faq-item">
+          <div class="flex items-center justify-between cursor-pointer list-none focus:outline-none faq-header">
+            <span class="font-medium text-[#1F2937]">Ist PACO DSGVO-konform?</span>
+            <svg class="w-5 h-5 text-[#7C3AED] transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div class="mt-3 text-[#6B7280] faq-content hidden">
+            <p>Ja. Optional On-Prem oder EU-Hosting, keine personenbezogenen Daten, Logging nach Vereinbarung.</p>
+          </div>
+        </div>
+
+        <!-- Welche Datenquellen kann PACO Chat nutzen? -->
+        <div class="p-6 faq-item">
+          <div class="flex items-center justify-between cursor-pointer list-none focus:outline-none faq-header">
+            <span class="font-medium text-[#1F2937]">Welche Datenquellen kann PACO Chat nutzen?</span>
+            <svg class="w-5 h-5 text-[#7C3AED] transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div class="mt-3 text-[#6B7280] faq-content hidden">
+            <p>Webseiten, Studiengangs-Datenbanken, PDF-Dokumente und strukturierte Daten. Alle Quellen werden vor der Nutzung von Ihnen freigegeben.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINALES KONTAKTFORMULAR -->
+  <section id="demo-anfrage" class="bg-[#7C3AED] py-16 px-6 md:px-20 text-white">
+    <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-8">
+      Demo anfragen oder Kontakt aufnehmen
+    </h2>
+
+    <form id="demoFormChat" class="max-w-xl mx-auto grid gap-6">
+      <input type="text" id="nameChat" name="name" placeholder="Name"
+             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
+      <input type="email" id="emailChat" name="email" placeholder="Hochschul-E-Mail"
+             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
+      <input type="text" id="institutionChat" name="institution" placeholder="Hochschule / Einrichtung"
+             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
+      <textarea id="messageChat" name="message" rows="4" placeholder="Nachricht (optional)"
+                class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]"></textarea>
+
+      <label class="flex items-start text-sm text-white">
+        <input type="checkbox" id="consentChat" required class="mt-1 mr-2 accent-white">
+        Ich habe die &nbsp; <a href="datenschutz.html" class="text-white underline hover:text-gray-200" target="_blank">Datenschutzerklärung</a>&nbsp; gelesen.
+      </label>
+
+      <button id="submitBtnChat" type="button"
+              class="bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition"
+              disabled>
+        Bitte füllen Sie das Formular aus
+      </button>
+    </form>
+  </section>
+
+  <!-- FOOTER wird dynamisch geladen -->
+  <div id="site-footer"></div>
+
+  <!-- Modal für Bildvergrößerung -->
+  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+    <div class="relative max-w-5xl max-h-[90vh] mx-4">
+      <img id="modalImage" src="" alt="" class="max-w-full max-h-full rounded-lg shadow-2xl">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300 transition-colors">
+        ×
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let production_code = true;  
+
+    function isMobileDevice() {
+        if (navigator.userAgentData) {
+          return navigator.userAgentData.mobile;
+        }
+        const ua = navigator.userAgent;
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        const isMobileUA = /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+        const isIPad = /iPad/.test(ua) || 
+                       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        return isMobileUA || isIPad || isTouchDevice;
+    }
+
+    function go_to_chat(lang) {
+        var backSite = encodeURIComponent(window.location.href);
+        if (production_code){
+              var pacoBaseUrl= `https://study-coach.uni-koeln.de/${lang}/paco_chat/14820/3/%23/demo/`;
+        } else {
+              var pacoBaseUrl= `http://localhost:8000/${lang}/paco_chat/14820/3/%23/demo/`
+        }      
+        var urlWithBackSite = pacoBaseUrl + (pacoBaseUrl.indexOf('?') === -1 ? '?' : '&') + "back_site=" + backSite;
+        if (isMobileDevice()) {
+          location.href = urlWithBackSite;
+        } else {
+          window.open(pacoBaseUrl, "PACOChat", "width=600,height=2000,resizable=no, toolbar=yes");
+        }
+    }
+
+    // Demo Form Handler für PACO Chat Seite
+    (function() {
+      const form     = document.getElementById('demoFormChat');
+      if (!form) return;
+
+      const submit   = document.getElementById('submitBtnChat');
+      const fields   = ['nameChat','emailChat','institutionChat'];
+      const consent  = document.getElementById('consentChat');
+      const emailRe  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function allFilled() {
+        return fields.every(id => {
+          const el = document.getElementById(id);
+          return el && el.value.trim().length > 0;
+        });
+      }
+
+      function emailValid() {
+        const em = document.getElementById('emailChat');
+        return em && emailRe.test(em.value.trim());
+      }
+
+      function validate() {
+        if ( allFilled() && emailValid() && consent.checked ) {
+          submit.disabled = false;
+          submit.textContent = 'Demo-Anfrage senden';
+          submit.className = 'bg-white text-[#7C3AED] hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
+        } else {
+          submit.disabled = true;
+          submit.textContent = 'Bitte füllen Sie das Formular aus';
+          submit.className = 'bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
+        }
+      }
+
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', validate);
+      });
+      if (consent) consent.addEventListener('change', validate);
+
+      submit.addEventListener('click', function(){
+        const nameVal  = document.getElementById('nameChat').value.trim();
+        const emailVal = document.getElementById('emailChat').value.trim();
+        const instVal  = document.getElementById('institutionChat').value.trim();
+        const msgVal   = document.getElementById('messageChat').value.trim();
+
+        const to      = 'info@ai-paco.de';
+        const cc      = emailVal;
+        const subject = 'PACO Chat Demo-Anfrage von ' + nameVal;
+        const body    = `Name: ${nameVal}\nHochschule: ${instVal}\nE-Mail: ${emailVal}\n\nNachricht:\n${msgVal}\n\n--- Anfrage über PACO Chat Seite ---`;
+
+        window.location.href = `mailto:${encodeURIComponent(to)}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+
+      validate();
+    })();
+
+    // Modal Funktionen
+    function openModal(img) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      modal.classList.remove('hidden');
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    document.getElementById('imageModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Header Loading
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('site-header').innerHTML = data;
+        
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+          });
+        }
+      })
+      .catch(console.error);
+
+    // Footer Loading
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-footer').innerHTML = html;
+      })
+      .catch(console.error);
+
+    // FAQ Accordion - nur ein Element auf einmal geöffnet
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      faqItems.forEach(item => {
+        const header = item.querySelector('.faq-header');
+        const content = item.querySelector('.faq-content');
+        const icon = item.querySelector('.faq-icon');
+        
+        header.addEventListener('click', () => {
+          // Prüfen, ob dieses Element bereits aktiv ist
+          const isActive = !content.classList.contains('hidden');
+          
+          // Alle FAQs schließen und Icons zurücksetzen
+          document.querySelectorAll('.faq-content').forEach(el => {
+            el.classList.add('hidden');
+          });
+          
+          document.querySelectorAll('.faq-icon').forEach(icon => {
+            icon.style.transform = 'rotate(0deg)';
+          });
+          
+          // Wenn das Element nicht aktiv war, öffnen wir es
+          if (!isActive) {
+            content.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
