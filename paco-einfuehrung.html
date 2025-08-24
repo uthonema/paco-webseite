@@ -6,6 +6,11 @@
   <title>PACO ist in nur vier Wochen einsatzbereit</title>
   <meta name="description" content="PACO Einführung: So führen Hochschulen die modulare KI-Assistenz in nur 4 Wochen ein – DSGVO-konform, flexibel lizenziert und sicher gehostet."/>
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- NEU HINZUFÜGEN -->
+  <script src="js/common.js"></script>
+  <script src="js/contact-form.js"></script>
+  
   <!-- Inter Font (Style Guide) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -42,9 +47,9 @@
           Minimaler Aufwand, maximale Entlastung: Die KI-Assistenz, die von Anfang an Mehrwert für Ihre Hochschule schafft.
         </p>
         <div class="mt-6 flex flex-col sm:flex-row gap-3 w-fit">
-          <a href="#demo-anfrage"
+          <a href="#contact-form-container"
              class="bg-white text-[#7C3AED] hover:bg-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg shadow text-base inline-block transition-colors duration-200">
-            Demo buchen
+            Kontakt aufnehmen
           </a>
         </div>
       </div>
@@ -93,9 +98,9 @@
         </li>
       </ul>
             <div class="mt-10">
-        <a href="#demo-anfrage"
+        <a href="#contact-form-container"
         class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center w-full">
-        Demo buchen
+        Kontakt aufnehmen
         </a>
       </div>
     </div>
@@ -174,9 +179,9 @@
       </figure>
 
       <div class="mt-10">
-        <a href="kontakt.html#kontakt"
+        <a href="#contact-form-container"
         class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center w-full">
-        PACO Team kontaktieren
+        Kontakt aufnehmen
         </a>
       </div>
     </div>
@@ -251,9 +256,9 @@
       </li>
     </ul>
           <div class="mt-10">
-        <a href="kontakt.html#kontakt"
+        <a href="#contact-form-container"
         class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center w-full">
-        PACO Team kontaktieren
+        Kontakt aufnehmen
         </a>
       </div>
   </div>
@@ -282,7 +287,7 @@
           <h3 class="font-semibold text-xl md:text-2xl mb-4 text-[#1F2937]">Antwortqualität – nachvollziehbar</h3>
           <ul class="space-y-2 text-[#1F2937]">
             <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> RAG‑Ansatz: Antworten aus geprüften, freigegebenen Quellen.</li>
-            <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> Minimales Halluzinationsrisiko.</li>
+            <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> Zuverlässige Antworten.</li>
             <li class="flex items-start"><span class="text-[#06B6D4] mr-2">✓</span> Bei unklarer Datenlage Empfehlung zur persönlichen Beratung.</li>
           </ul>
         </div>
@@ -293,48 +298,12 @@
 
 
   <!-- FINALES KONTAKTFORMULAR - Custom Checkbox implementieren -->
-  <section id="demo-anfrage" class="bg-[#7C3AED] py-16 px-6 md:px-20 text-white">
-    <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-8">
-      Demo buchen
-    </h2>
-
-    <form id="demoFormEinfuehrung" class="max-w-xl mx-auto grid gap-6">
-      <input type="text" id="nameEinfuehrung" name="name" placeholder="Name"
-             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-      <input type="email" id="emailEinfuehrung" name="email" placeholder="Hochschul-E-Mail"
-             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-      <input type="text" id="institutionEinfuehrung" name="institution" placeholder="Hochschule / Einrichtung"
-             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-      <textarea id="messageEinfuehrung" name="message" rows="4" placeholder="Nachricht (optional)"
-                class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]"></textarea>
-
-      <!-- Custom Checkbox -->
-      <label class="flex items-start text-sm text-white cursor-pointer">
-        <div class="relative flex-shrink-0 mt-1 mr-3">
-          <input type="checkbox" id="consentEinfuehrung" required class="sr-only">
-          <div class="checkbox-custom w-5 h-5 bg-white border-2 border-white rounded flex items-center justify-center">
-            <svg class="checkmark w-3 h-3 text-[#7C3AED] opacity-0 transition-opacity duration-200" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-        </div>
-        <span>
-          Ich habe die <a href="datenschutz.html" class="text-white underline hover:text-gray-200" target="_blank">Datenschutzerklärung</a> gelesen.
-        </span>
-      </label>
-
-      <button id="submitBtnEinfuehrung" type="button"
-              class="bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition"
-              disabled>
-        Bitte füllen Sie das Formular aus
-      </button>
-    </form>
-  </section>
+  <div id="contact-form-container"></div>
 
   <!-- FOOTER wird dynamisch geladen -->
   <div id="site-footer"></div>
 
-  <!-- Modal für Bildvergrößerung (ERSETZT das alte Modal) -->
+  <!-- Modal für Bildvergrößerung -->
   <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
     <div class="relative max-w-5xl max-h-[90vh] mx-4">
       <img id="modalImage" src="" alt="" class="max-w-full max-h-full rounded-lg shadow-2xl">
@@ -345,195 +314,10 @@
   </div>
 
   <script>
-    // Modal Funktionen (ERSETZT die alten Funktionen)
-    function openModal(img) {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImage');
-      modal.classList.remove('hidden');
-      modalImg.src = img.src;
-      modalImg.alt = img.alt;
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('imageModal');
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Demo Form Handler für PACO Einführung Seite - ERWEITERT
-    (function() {
-      const form = document.getElementById('demoFormEinfuehrung');
-      if (!form) return;
-
-      const submit = document.getElementById('submitBtnEinfuehrung');
-      const fields = ['nameEinfuehrung','emailEinfuehrung','institutionEinfuehrung'];
-      const consent = document.getElementById('consentEinfuehrung');
-      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      // Custom Checkbox Handler - HINZUGEFÜGT
-      const checkboxCustom = document.querySelector('#demoFormEinfuehrung .checkbox-custom');
-      const checkmark = document.querySelector('#demoFormEinfuehrung .checkmark');
-      
-      if (checkboxCustom && checkmark) {
-        checkboxCustom.addEventListener('click', function() {
-          consent.checked = !consent.checked;
-          updateCheckboxVisual();
-          validate();
-        });
-
-        function updateCheckboxVisual() {
-          if (consent.checked) {
-            checkboxCustom.classList.add('bg-white');
-            checkmark.classList.remove('opacity-0');
-            checkmark.classList.add('opacity-100');
-          } else {
-            checkboxCustom.classList.remove('bg-white');
-            checkmark.classList.remove('opacity-100');
-            checkmark.classList.add('opacity-0');
-          }
-        }
-      }
-
-      function allFilled() {
-        return fields.every(id => {
-          const el = document.getElementById(id);
-          return el && el.value.trim().length > 0;
-        });
-      }
-
-      function emailValid() {
-        const em = document.getElementById('emailEinfuehrung');
-        return em && emailRe.test(em.value.trim());
-      }
-
-      function validate() {
-        if ( allFilled() && emailValid() && consent.checked ) {
-          submit.disabled = false;
-          submit.textContent = 'Demo buchen';
-          submit.className = 'bg-white text-[#7C3AED] hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
-        } else {
-          submit.disabled = true;
-          submit.textContent = 'Bitte füllen Sie das Formular aus';
-          submit.className = 'bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
-        }
-      }
-
-      fields.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('input', validate);
-      });
-
-      submit.addEventListener('click', function(){
-        const nameVal  = document.getElementById('nameEinfuehrung').value.trim();
-        const emailVal = document.getElementById('emailEinfuehrung').value.trim();
-        const instVal  = document.getElementById('institutionEinfuehrung').value.trim();
-        const msgVal   = document.getElementById('messageEinfuehrung').value.trim();
-
-        const to      = 'info@ai-paco.de';
-        const cc      = emailVal;
-        const subject = 'PACO Einführung Demo-Anfrage von ' + nameVal;
-        const body    = `Name: ${nameVal}\nHochschule: ${instVal}\nE-Mail: ${emailVal}\n\nNachricht:\n${msgVal}\n\n--- Anfrage über PACO Einführung Seite ---`;
-
-        window.location.href = `mailto:${encodeURIComponent(to)}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      });
-
-      validate();
-    })();
-
-    // Event Listener für Escape-Taste und Klick außerhalb
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-    });
-
-    document.addEventListener('click', function(e) {
-      if (e.target && e.target.id === 'imageModal') {
-        closeModal();
-      }
-    });
-
-    // Header Loading
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('site-header').innerHTML = data;
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuToggle && mobileMenu) {
-          menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-          });
-        }
-      })
-      .catch(console.error);
-
-    // Footer Loading
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('site-footer').innerHTML = html;
-      })
-      .catch(console.error);
-
-    // Verbessere das Scroll-Verhalten für Anker-Links
-    document.addEventListener('DOMContentLoaded', function() {
-      // Alle Anker-Links innerhalb der Seite auswählen
-      const anchorLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
-      
-      anchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          const targetId = this.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          
-          if (targetElement) {
-            // Position des Zielelements + Offset für Header-Höhe
-            const headerOffset = 100; // Anpassen nach Header-Höhe + extra Abstand
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
-            // Smooth Scroll zum Zielelement mit Offset
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-    });
-
-    // Scroll-to-Anchor Handler für externe Zugriffe - HINZUGEFÜGT
-    document.addEventListener('DOMContentLoaded', function() {
-      // Prüfe URL-Parameter für Scroll-Ziel
-      const urlParams = new URLSearchParams(window.location.search);
-      const scrollTarget = urlParams.get('scroll');
-      
-      if (scrollTarget) {
-        // Warte bis Header und andere Inhalte geladen sind
-        setTimeout(() => {
-          const targetElement = document.getElementById(scrollTarget);
-          if (targetElement) {
-            // Scrolle zur Section mit Offset für Header
-            const headerOffset = 100; // Etwas mehr Platz für bessere Sichtbarkeit
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        }, 500); // Längere Wartezeit für vollständiges Laden
-      }
-    });
-
+    // Video-Funktion bleibt (seiten-spezifisch)
     function loadVideo() {
       const container = document.getElementById('video-container');
       if (!container) return;
-      // Entferne Overlay und Datenschutz-Hinweis
       container.innerHTML = `
         <iframe
           src="https://www.youtube.com/embed/qmosIjSPMvs?autoplay=1&rel=0"
@@ -546,7 +330,20 @@
         ></iframe>
       `;
     }
-  </script>
 
+    // Seiten-spezifische Initialisierung - NUR das Nötigste
+    document.addEventListener('DOMContentLoaded', function() {
+      initContactForm({
+        containerId: 'contact-form-container',
+        title: "Kontakt aufnehmen"
+      });
+
+      // OPTIONAL: URL-Parameter Scroll-Handler (seiten-spezifisch)
+      const urlParams = new URLSearchParams(window.location.search);
+      const scrollTarget = urlParams.get('scroll');
+      
+    });
+  </script>
 </body>
 </html>
+

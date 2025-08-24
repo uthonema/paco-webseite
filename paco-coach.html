@@ -6,6 +6,11 @@
   <title>PACO Coach – Studienwahl mit KI, die zu Ihrer Hochschule passt</title>
   <meta name="description" content="PACO Coach führt Studieninteressierte durch ein kurzes KI‑Interview, zeigt die Passung zu Studiengängen und ermöglicht Vergleiche – DSGVO‑konform, schnell implementiert."/>
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- NEU HINZUFÜGEN -->
+  <script src="js/common.js"></script>
+  <script src="js/contact-form.js"></script>
+  
   <!-- Inter Font (Style Guide) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,9 +41,9 @@
                   class="bg-white text-[#7C3AED] hover:bg-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg shadow text-base cursor-pointer transition-colors duration-200">
             PACO Coach testen
           </button>
-          <a href="#demo-anfrage"
+          <a href="#contact-form-container"
              class="bg-transparent border-2 border-white text-white hover:bg-[#6A2ECD] hover:border-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 text-base inline-block">
-            Demo anfragen
+            Demo buchen
           </a>
         </div>
       </div>
@@ -168,9 +173,9 @@
 
       <!-- Qualified Lead CTA nach Analytics -->
       <div class="mt-12 text-center">
-        <a href="#demo-anfrage"
+        <a href="#contact-form-container"
            class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
-          Demo anfragen
+          Demo buchen oder Kontakt aufnehmen
         </a>
       </div>
     </div>
@@ -186,7 +191,7 @@
         Passen Sie PACO Coach an Ihre Hochschule an, nutzen Sie Informationen von Ihren Studiengängen und Ihre Matching-Kriterien. Gestalten Sie das Design nach Ihren Vorgaben und sorgen Sie für eine sichere und nahtlose Einbindung.
       </p>
 
-      <div class="grid md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Studiengänge & Matching -->
         <div class="bg-white border border-[#E9D5FF] rounded-xl p-8 text-center">
           <div class="flex items-center justify-center mb-4 mx-auto">
@@ -219,8 +224,6 @@
           <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Einbindung</h3>
           <p class="text-[#6B7280]">Widget, iFrame, Sub‑Seite oder App‑Integration – mit Rollen & Rechten. So können sich alle Mitabeitenden optimal einbringen.</p>
         </div>
-
-        
       </div>
     </div>
   </section>
@@ -273,43 +276,7 @@
 
 
   <!-- FINALES KONTAKTFORMULAR -->
-  <section id="demo-anfrage" class="bg-[#7C3AED] py-16 px-6 md:px-20 text-white">
-  <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-8">
-    Demo anfragen oder Kontakt aufnehmen
-  </h2>
-
-  <form id="demoFormCoach" class="max-w-xl mx-auto grid gap-6">
-    <input type="text" id="nameCoach" name="name" placeholder="Name"
-           class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-    <input type="email" id="emailCoach" name="email" placeholder="Hochschul-E-Mail"
-           class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-    <input type="text" id="institutionCoach" name="institution" placeholder="Hochschule / Einrichtung"
-           class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-    <textarea id="messageCoach" name="message" rows="4" placeholder="Nachricht (optional)"
-              class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]"></textarea>
-
-    <!-- Custom Checkbox -->
-    <label class="flex items-start text-sm text-white cursor-pointer">
-      <div class="relative flex-shrink-0 mt-1 mr-3">
-        <input type="checkbox" id="consentCoach" required class="sr-only">
-        <div class="checkbox-custom w-5 h-5 bg-white border-2 border-white rounded flex items-center justify-center">
-          <svg class="checkmark w-3 h-3 text-[#7C3AED] opacity-0 transition-opacity duration-200" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-          </svg>
-        </div>
-      </div>
-      <span>
-        Ich habe die <a href="datenschutz.html" class="text-white underline hover:text-gray-200" target="_blank">Datenschutzerklärung</a> gelesen.
-      </span>
-    </label>
-
-    <button id="submitBtnCoach" type="button"
-            class="bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition"
-            disabled>
-      Bitte füllen Sie das Formular aus
-    </button>
-  </form>
-</section>
+  <div id="contact-form-container"></div>
 
   <!-- FOOTER wird dynamisch geladen -->
   <div id="site-footer"></div>
@@ -324,221 +291,15 @@
     </div>
   </div>
 
-<script>
-let production_code = true;  
-function isMobileDevice() {
-    // Modern method using userAgentData
-    if (navigator.userAgentData) {
-      return navigator.userAgentData.mobile;
-    }
-  
-    // Fallback for older browsers
-    const ua = navigator.userAgent;
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  
-    const isMobileUA = /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-    
-    const isIPad = /iPad/.test(ua) || 
-                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  
-    return isMobileUA || isIPad || isTouchDevice;
-  }
-  function go_to_chat(lang) {
-      var backSite = encodeURIComponent(window.location.href);
-      if (production_code){
-            var pacoBaseUrl= `https://study-coach.uni-koeln.de/${lang}/paco_chat/14820/3/%23/demo/`;
-      } else {
-            var pacoBaseUrl= `http://localhost:8000/${lang}/paco_chat/14820/3/%23/demo/`
-      }      
-      var urlWithBackSite = pacoBaseUrl + (pacoBaseUrl.indexOf('?') === -1 ? '?' : '&') + "back_site=" + backSite;
-      if (isMobileDevice()) {
-        location.href = urlWithBackSite;
-      } else {
-        window.open(pacoBaseUrl, "KleinesFenster", "width=600,height=2000,resizable=no, toolbar=yes");
-      }
-  }
-  function go_to_interview(lang) {
-      var backSite = encodeURIComponent(window.location.href);
-      
-      if (isMobileDevice()) {
-        if (production_code){
-            var pacoBaseUrl= `https://study-coach.uni-koeln.de/${lang}/question/1/0/dummy/demo/`;
-        } else {
-            var pacoBaseUrl= `http://localhost:8000/${lang}/question/1/0/dummy/demo/`;
-        }
-        var urlWithBackSite = pacoBaseUrl + (pacoBaseUrl.indexOf('?') === -1 ? '?' : '&') + "back_site=" + backSite;
-        location.href = urlWithBackSite;
-      } else {
-        if (production_code){
-            var pacoBaseUrl= `https://study-coach.uni-koeln.de/${lang}/question/1/0/%23/demo/`;
-        } else {
-            var pacoBaseUrl= `http://localhost:8000/${lang}/question/1/0/%23/demo/`;
-        }
-        window.open(pacoBaseUrl, "KleinesFenster", "width=600,height=2000,resizable=no");
-      }
-  }
-</script>
-
-
-  <!-- FOOTER wird dynamisch geladen -->
-  <div id="site-footer"></div>
-
-  <!-- Loader für Header/Footer (failsafe, falls globales Script nicht eingebunden ist) -->
+  <!-- ALLES ENTFERNEN und ersetzen durch: -->
   <script>
-  (async () => {
-    try {
-      if (!document.querySelector('#site-header').dataset.loaded) {
-        const h = await fetch('header.html');
-        if (h.ok) {
-          document.querySelector('#site-header').innerHTML = await h.text();
-          document.querySelector('#site-header').dataset.loaded = '1';
-        }
-      }
-    } catch(e) {}
-    try {
-      if (!document.querySelector('#site-footer').dataset.loaded) {
-        const f = await fetch('footer.html');
-        if (f.ok) {
-          document.querySelector('#site-footer').innerHTML = await f.text();
-          document.querySelector('#site-footer').dataset.loaded = '1';
-        }
-      }
-    } catch(e) {}
-    // Mobile menu toggle (aus header.html bekannt)
-    document.addEventListener('click', (ev) => {
-      const btn = ev.target.closest('#menu-toggle');
-      if (btn) {
-        const mm = document.getElementById('mobile-menu');
-        if (mm) mm.classList.toggle('hidden');
-      }
-    });
-  })();
-
-  // FAQ Accordion - nur ein Element auf einmal geöffnet
-  document.addEventListener('DOMContentLoaded', function() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-      const header = item.querySelector('.faq-header');
-      const content = item.querySelector('.faq-content');
-      const icon = item.querySelector('.faq-icon');
-      
-      header.addEventListener('click', () => {
-        // Prüfen, ob dieses Element bereits aktiv ist
-        const isActive = !content.classList.contains('hidden');
-        
-        // Alle FAQs schließen und Icons zurücksetzen
-        document.querySelectorAll('.faq-content').forEach(el => {
-          el.classList.add('hidden');
-        });
-        
-        document.querySelectorAll('.faq-icon').forEach(icon => {
-          icon.style.transform = 'rotate(0deg)';
-        });
-        
-        // Wenn das Element nicht aktiv war, öffnen wir es
-        if (!isActive) {
-          content.classList.remove('hidden');
-          icon.style.transform = 'rotate(180deg)';
-        }
+    // Seiten-spezifische Initialisierung
+    document.addEventListener('DOMContentLoaded', function() {
+      initContactForm({
+        containerId: 'contact-form-container',
+        title: "PACO Coach Demo buchen oder Kontakt aufnehmen"
       });
     });
-  });
-
-  // Bild-Modal Funktionen
-  function openModal(img) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    modal.classList.remove('hidden');
-    modalImg.src = img.src;
-    modalImg.alt = img.alt;
-  }
-
-  function closeModal() {
-    document.getElementById('imageModal').classList.add('hidden');
-  }
-</script>
-
-<!-- Demo Form Handler für PACO Coach Seite -->
-<script>
-(function() {
-  const form = document.getElementById('demoFormCoach');
-  if (!form) return;
-
-  const submit = document.getElementById('submitBtnCoach');
-  const fields = ['nameCoach', 'emailCoach', 'institutionCoach'];
-  const consent = document.getElementById('consentCoach');
-  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // Custom Checkbox Handler
-  const checkboxCustom = document.querySelector('#demoFormCoach .checkbox-custom');
-  const checkmark = document.querySelector('#demoFormCoach .checkmark');
-  
-  if (checkboxCustom && checkmark) {
-    checkboxCustom.addEventListener('click', function() {
-      consent.checked = !consent.checked;
-      updateCheckboxVisual();
-      validate();
-    });
-
-    function updateCheckboxVisual() {
-      if (consent.checked) {
-        checkboxCustom.classList.add('bg-white');
-        checkmark.classList.remove('opacity-0');
-        checkmark.classList.add('opacity-100');
-      } else {
-        checkboxCustom.classList.remove('bg-white');
-        checkmark.classList.remove('opacity-100');
-        checkmark.classList.add('opacity-0');
-      }
-    }
-  }
-
-  function allFilled() {
-    return fields.every(id => {
-      const el = document.getElementById(id);
-      return el && el.value.trim().length > 0;
-    });
-  }
-
-  function emailValid() {
-    const em = document.getElementById('emailCoach');
-    return em && emailRe.test(em.value.trim());
-  }
-
-  function validate() {
-    if (allFilled() && emailValid() && consent.checked) {
-      submit.disabled = false;
-      submit.textContent = 'Demo-Anfrage senden';
-      submit.className = 'bg-white text-[#7C3AED] hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
-    } else {
-      submit.disabled = true;
-      submit.textContent = 'Bitte füllen Sie das Formular aus';
-      submit.className = 'bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
-    }
-  }
-
-  fields.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', validate);
-  });
-
-  submit.addEventListener('click', function() {
-    const nameVal = document.getElementById('nameCoach').value.trim();
-    const emailVal = document.getElementById('emailCoach').value.trim();
-    const instVal = document.getElementById('institutionCoach').value.trim();
-    const msgVal = document.getElementById('messageCoach').value.trim();
-
-    const to = 'info@ai-paco.de';
-    const cc = emailVal;
-    const subject = 'PACO Coach Demo-Anfrage von ' + nameVal;
-    const body = `Name: ${nameVal}\nHochschule: ${instVal}\nE-Mail: ${emailVal}\n\nNachricht:\n${msgVal}\n\n--- Anfrage über PACO Coach Seite ---`;
-
-    window.location.href = `mailto:${encodeURIComponent(to)}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  });
-
-  validate();
-})();
-</script>
+  </script>
 </body>
 </html>

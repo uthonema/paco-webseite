@@ -2,20 +2,15 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PACO Chat – KI-Assistenz für Hochschulen</title>
-  <meta name="description" content="PACO Chat beantwortet Fragen zu Studium und Verwaltung für Studieninteressierte, Studierende und Mitarbeitende – zuverlässig, DSGVO-konform, 24/7."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PACO Chat – KI-Chatbot für Hochschulen</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Inter Font (Style Guide) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji'; }
-  </style>
+  
+  <!-- NEU HINZUFÜGEN -->
+  <script src="js/common.js"></script>
+  <script src="js/contact-form.js"></script>
 </head>
 <body class="bg-white text-[#1F2937]">
-
   <!-- HEADER wird dynamisch geladen -->
   <div id="site-header"></div>
 
@@ -40,9 +35,9 @@
                   class="bg-white text-[#7C3AED] hover:bg-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg shadow text-base cursor-pointer transition-colors duration-200">
             PACO Chat testen
           </button>
-          <a href="#demo-anfrage"
+          <a href="#contact-form-container"
              class="bg-transparent border-2 border-white text-white hover:bg-[#6A2ECD] hover:border-[#6A2ECD] hover:text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 text-base inline-block">
-            Demo anfragen
+            Demo buchen
           </a>
         </div>
       </div>
@@ -93,7 +88,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
           <h3 class="font-semibold text-xl md:text-2xl mb-2">Zuverlässige Antworten</h3>
-          <p class="text-[#6B7280]">Antworten nur aus verifizierten, freigegebenen Quellen (RAG-Ansatz) und minimiert Halluzinieren.</p>
+          <p class="text-[#6B7280]">Antworten nur aus verifizierten, freigegebenen Quellen (RAG-Ansatz) für zuverlässige Antworten.</p>
         </li>
         <li class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
           <div class="flex items-center justify-center mb-4 mx-auto">
@@ -207,9 +202,9 @@
 
       <!-- Qualified Lead CTA nach Analytics -->
       <div class="mt-12 text-center">
-        <a href="#demo-anfrage"
+        <a href="#contact-form-container"
            class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
-          Demo anfragen oder Kontakt aufnehmen
+          Demo buchen oder Kontakt aufnehmen
         </a>
       </div>
     </div>
@@ -332,51 +327,9 @@
     </div>
   </section>
 
-  <!-- FINALES KONTAKTFORMULAR -->
-  <section id="demo-anfrage" class="bg-[#7C3AED] py-16 px-6 md:px-20 text-white">
-    <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-8">
-      Demo anfragen oder Kontakt aufnehmen
-    </h2>
-
-    <form id="demoFormChat" class="max-w-xl mx-auto grid gap-6">
-      <input type="text" id="nameChat" name="name" placeholder="Name"
-             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-      <input type="email" id="emailChat" name="email" placeholder="Hochschul-E-Mail"
-             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-      <input type="text" id="institutionChat" name="institution" placeholder="Hochschule / Einrichtung"
-             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-      <textarea id="messageChat" name="message" rows="4" placeholder="Nachricht (optional)"
-                class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]"></textarea>
-
-      <!-- Custom Checkbox -->
-      <label class="flex items-start text-sm text-white cursor-pointer">
-        <div class="relative flex-shrink-0 mt-1 mr-3">
-          <input type="checkbox" id="consentChat" required class="sr-only">
-          <div class="checkbox-custom w-5 h-5 bg-white border-2 border-white rounded flex items-center justify-center">
-            <svg class="checkmark w-3 h-3 text-[#7C3AED] opacity-0 transition-opacity duration-200" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-        </div>
-        <span>
-          Ich habe die <a href="datenschutz.html" class="text-white underline hover:text-gray-200" target="_blank">Datenschutzerklärung</a> gelesen.
-        </span>
-      </label>
-
-      <button id="submitBtnChat" type="button"
-              class="bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition"
-              disabled>
-        Bitte füllen Sie das Formular aus
-      </button>
-    </form>
-  </section>
-
-  <!-- FOOTER wird dynamisch geladen -->
-  <div id="site-footer"></div>
-
-  <!-- Modal für Bildvergrößerung -->
-  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
-    <div class="relative max-w-5xl max-h-[90vh] mx-4">
+  <!-- Modal bleibt -->
+  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+    <div class="relative max-w-5xl max-h-[90vh] w-full">
       <img id="modalImage" src="" alt="" class="max-w-full max-h-full rounded-lg shadow-2xl">
       <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300 transition-colors">
         ×
@@ -384,227 +337,25 @@
     </div>
   </div>
 
+  <!-- WICHTIG: Container VOR Footer -->
+  <div id="contact-form-container"></div>
+  
+  <!-- Footer NACH Container -->
+  <div id="site-footer"></div>
+
+  <!-- JavaScript anpassen -->
   <script>
-    let production_code = true;  
+    // ENTFERNEN: Header/Footer Loading - ist jetzt in common.js
+    
+    // ENTFERNEN: Modal-Funktionen - sind jetzt in common.js
 
-    function isMobileDevice() {
-        if (navigator.userAgentData) {
-          return navigator.userAgentData.mobile;
-        }
-        const ua = navigator.userAgent;
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        const isMobileUA = /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-        const isIPad = /iPad/.test(ua) || 
-                       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        return isMobileUA || isIPad || isTouchDevice;
-    }
-
-    function go_to_chat(lang) {
-        var backSite = encodeURIComponent(window.location.href);
-        if (production_code){
-              var pacoBaseUrl= `https://study-coach.uni-koeln.de/${lang}/paco_chat/14820/3/%23/demo/`;
-        } else {
-              var pacoBaseUrl= `http://localhost:8000/${lang}/paco_chat/14820/3/%23/demo/`
-        }      
-        var urlWithBackSite = pacoBaseUrl + (pacoBaseUrl.indexOf('?') === -1 ? '?' : '&') + "back_site=" + backSite;
-        if (isMobileDevice()) {
-          location.href = urlWithBackSite;
-        } else {
-          window.open(pacoBaseUrl, "PACOChat", "width=600,height=2000,resizable=no, toolbar=yes");
-        }
-    }
-
-    // NEUE SMOOTH SCROLL FUNKTION FÜR DEMO-ANFRAGE
-    function initSmoothScroll() {
-      const demoLinks = document.querySelectorAll('a[href="#demo-anfrage"]');
-      
-      demoLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          const targetElement = document.getElementById('demo-anfrage');
-          if (targetElement) {
-            // Offset für Header + extra Abstand damit das komplette Formular sichtbar ist
-            const headerOffset = 100; // Mehr Offset für bessere Sichtbarkeit
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-    }
-
-    // Demo Form Handler für PACO Chat Seite (bleibt unverändert)
-    (function() {
-      const form     = document.getElementById('demoFormChat');
-      if (!form) return;
-
-      const submit   = document.getElementById('submitBtnChat');
-      const fields   = ['nameChat','emailChat','institutionChat'];
-      const consent  = document.getElementById('consentChat');
-      const emailRe  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      // Custom Checkbox Handler
-      const checkboxCustom = document.querySelector('#demoFormChat .checkbox-custom');
-      const checkmark = document.querySelector('#demoFormChat .checkmark');
-      
-      if (checkboxCustom && checkmark) {
-        checkboxCustom.addEventListener('click', function() {
-          consent.checked = !consent.checked;
-          updateCheckboxVisual();
-          validate();
-        });
-
-        function updateCheckboxVisual() {
-          if (consent.checked) {
-            checkboxCustom.classList.add('bg-white');
-            checkmark.classList.remove('opacity-0');
-            checkmark.classList.add('opacity-100');
-          } else {
-            checkboxCustom.classList.remove('bg-white');
-            checkmark.classList.remove('opacity-100');
-            checkmark.classList.add('opacity-0');
-          }
-        }
-      }
-
-      function allFilled() {
-        return fields.every(id => {
-          const el = document.getElementById(id);
-          return el && el.value.trim().length > 0;
-        });
-      }
-
-      function emailValid() {
-        const em = document.getElementById('emailChat');
-        return em && emailRe.test(em.value.trim());
-      }
-
-      function validate() {
-        if ( allFilled() && emailValid() && consent.checked ) {
-          submit.disabled = false;
-          submit.textContent = 'Demo-Anfrage senden';
-          submit.className = 'bg-white text-[#7C3AED] hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
-        } else {
-          submit.disabled = true;
-          submit.textContent = 'Bitte füllen Sie das Formular aus';
-          submit.className = 'bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition';
-        }
-      }
-
-      fields.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('input', validate);
-      });
-
-      submit.addEventListener('click', function(){
-        const nameVal  = document.getElementById('nameChat').value.trim();
-        const emailVal = document.getElementById('emailChat').value.trim();
-        const instVal  = document.getElementById('institutionChat').value.trim();
-        const msgVal   = document.getElementById('messageChat').value.trim();
-
-        const to      = 'info@ai-paco.de';
-        const cc      = emailVal;
-        const subject = 'PACO Chat Demo-Anfrage von ' + nameVal;
-        const body    = `Name: ${nameVal}\nHochschule: ${instVal}\nE-Mail: ${emailVal}\n\nNachricht:\n${msgVal}\n\n--- Anfrage über PACO Chat Seite ---`;
-
-        window.location.href = `mailto:${encodeURIComponent(to)}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      });
-
-      validate();
-    })();
-
-    // Modal Funktionen (bleiben unverändert)
-    function openModal(img) {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImage');
-      modal.classList.remove('hidden');
-      modalImg.src = img.src;
-      modalImg.alt = img.alt;
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('imageModal');
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-    });
-
-    document.getElementById('imageModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeModal();
-      }
-    });
-
-    // Header Loading mit Smooth Scroll Initialisierung
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('site-header').innerHTML = data;
-        
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (menuToggle && mobileMenu) {
-          menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-          });
-        }
-
-        // WICHTIG: Smooth Scroll nach Header-Loading initialisieren
-        initSmoothScroll();
-      })
-      .catch(console.error);
-
-    // Footer Loading (bleibt unverändert)
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('site-footer').innerHTML = html;
-      })
-      .catch(console.error);
-
-    // FAQ Accordion (bleibt unverändert)
+    // Nur noch Kontaktformular initialisieren
     document.addEventListener('DOMContentLoaded', function() {
-      const faqItems = document.querySelectorAll('.faq-item');
-      
-      faqItems.forEach(item => {
-        const header = item.querySelector('.faq-header');
-        const content = item.querySelector('.faq-content');
-        const icon = item.querySelector('.faq-icon');
-        
-        header.addEventListener('click', () => {
-          const isActive = !content.classList.contains('hidden');
-          
-          document.querySelectorAll('.faq-content').forEach(el => {
-            el.classList.add('hidden');
-          });
-          
-          document.querySelectorAll('.faq-icon').forEach(icon => {
-            icon.style.transform = 'rotate(0deg)';
-          });
-          
-          if (!isActive) {
-            content.classList.remove('hidden');
-            icon.style.transform = 'rotate(180deg)';
-          }
-        });
+      initContactForm({
+        containerId: 'contact-form-container',
+        title: "PACO Chat Demo buchen oder Kontakt aufnehmen",
       });
-
-      // AUCH: Smooth Scroll bei DOMContentLoaded initialisieren (Fallback)
-      initSmoothScroll();
     });
 </script>
-
 </body>
 </html>

@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PACO – KI-Assistent für Hochschulen</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- NEU HINZUFÜGEN -->
+  <script src="js/common.js"></script>
+  <script src="js/contact-form.js"></script>
+  <style>
+    /* Counter Animation verbessern */
+    .countup {
+      display: inline-block;
+      min-width: 2ch; /* Verhindert Layout-Shifts */
+    }
+    
+    /* Smooth Scrolling verbessern */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-900 scroll-smooth">
   <!-- HEADER wird dynamisch geladen -->
@@ -96,7 +113,7 @@
 
   <!-- CTA BUTTON -->
   <section class="mt-1 mb-0 bg-[#FFFFFF] py-16 px-6 md:px-20 text-gray-800">
-    <a href="kontakt.html"
+    <a href="#kontakt"
        class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium py-3 px-6 rounded-lg transition block text-center">
        Demo buchen oder Frage stellen
     </a>
@@ -583,168 +600,83 @@
   </section>
 
   <!-- KONTAKT -->
-  <section id="kontakt" class="bg-[#7C3AED] py-16 px-6 md:px-20 text-white">
-    <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-8">
-      Demo buchen oder Frage stellen
-    </h2>
-
-    <form id="demoForm" class="max-w-xl mx-auto grid gap-6">
-      <input type="text" id="name" name="name" placeholder="Name"
-             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-      <input type="email" id="email" name="email" placeholder="Hochschul-E-Mail"
-             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-      <input type="text" id="institution" name="institution" placeholder="Hochschule / Einrichtung"
-             class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]" required>
-      <textarea id="message" name="message" rows="4" placeholder="Nachricht (optional)"
-                class="w-full bg-white border border-white rounded-lg p-3 focus:ring-2 focus:ring-white focus:border-white text-[#1F2937]"></textarea>
-
-      <!-- Custom Checkbox -->
-      <label class="flex items-start text-sm text-white cursor-pointer">
-        <div class="relative flex-shrink-0 mt-1 mr-3">
-          <input type="checkbox" id="consent" required class="sr-only">
-          <div class="checkbox-custom w-5 h-5 bg-white border-2 border-white rounded flex items-center justify-center">
-            <svg class="checkmark w-3 h-3 text-[#7C3AED] opacity-0 transition-opacity duration-200" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-            </svg>
-          </div>
-        </div>
-        <span>
-          Ich habe die <a href="datenschutz.html" class="text-white underline hover:text-gray-200" target="_blank">Datenschutzerklärung</a> gelesen.
-        </span>
-      </label>
-
-      <button id="submitBtn" type="button"
-              class="bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:scale-105 hover:shadow-md font-medium py-3 px-6 rounded-lg transition transform"
-              disabled>
-        Bitte füllen Sie das Formular aus
-      </button>
-    </form>
-  </section>
+  <div id="contact-form-container"></div>
 
   <!-- SCRIPTS -->
   <script>
-    // Counter Animation
-    (function () {
-      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      document.querySelectorAll('.countup').forEach(el => {
-        const target = parseFloat(el.dataset.target || '0');
-        const duration = parseInt(el.dataset.duration || '1200', 10);
-        const decimals = parseInt(el.dataset.decimals || '0', 10);
-
-        if (reduce) {
-          el.textContent = target.toLocaleString('de-DE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-          return;
-        }
-
-        const startTime = performance.now();
-        const startVal = 0;
-        const diff = target - startVal;
-
-        function tick(now) {
-          const p = Math.min((now - startTime) / duration, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          const val = startVal + diff * eased;
-          el.textContent = val.toLocaleString('de-DE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
+    // Seiten-spezifische Initialisierung
+    document.addEventListener('DOMContentLoaded', function() {
+      initContactForm({
+        containerId: 'contact-form-container',
+        title: "Demo buchen oder Frage stellen"
       });
-    })();
-
-    // Demo Form Handler
-    (function() {
-      const form     = document.getElementById('demoForm');
-      const submit   = document.getElementById('submitBtn');
-      const fields   = ['name','email','institution'];
-      const consent  = document.getElementById('consent');
-      const emailRe  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      // Custom Checkbox Handler
-      const checkboxCustom = document.querySelector('.checkbox-custom');
-      const checkmark = document.querySelector('.checkmark');
       
-      checkboxCustom.addEventListener('click', function() {
-        consent.checked = !consent.checked;
-        updateCheckboxVisual();
-        validate();
-      });
+      // Smooth Scroll (nur für index.html)
+      initSmoothScroll();
+      
+      // Counter Animation NACH dem DOM-Loading
+      setTimeout(initCounterAnimation, 100);
+    });
+    
+    // Counter Animation in separate Funktion auslagern
+    function initCounterAnimation() {
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      // Intersection Observer für bessere Performance
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseFloat(el.dataset.target || '0');
+            const duration = parseInt(el.dataset.duration || '1200', 10);
+            const decimals = parseInt(el.dataset.decimals || '0', 10);
 
-      function updateCheckboxVisual() {
-        if (consent.checked) {
-          checkboxCustom.classList.add('bg-white');
-          checkmark.classList.remove('opacity-0');
-          checkmark.classList.add('opacity-100');
-        } else {
-          checkboxCustom.classList.remove('bg-white');
-          checkmark.classList.remove('opacity-100');
-          checkmark.classList.add('opacity-0');
-        }
-      }
+            if (reduce) {
+              el.textContent = target.toLocaleString('de-DE', { 
+                minimumFractionDigits: decimals, 
+                maximumFractionDigits: decimals 
+              });
+              return;
+            }
 
-      function allFilled() {
-        return fields.every(id => {
-          const el = document.getElementById(id);
-          return el.value.trim().length > 0;
+            const startTime = performance.now();
+            const startVal = 0;
+            const diff = target - startVal;
+
+            function tick(now) {
+              const p = Math.min((now - startTime) / duration, 1);
+              const eased = 1 - Math.pow(1 - p, 3); // Easing-Funktion
+              const val = startVal + diff * eased;
+              el.textContent = val.toLocaleString('de-DE', { 
+                minimumFractionDigits: decimals, 
+                maximumFractionDigits: decimals 
+              });
+              if (p < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+            
+            // Element nur einmal animieren
+            observer.unobserve(el);
+          }
         });
-      }
+      }, { threshold: 0.5 });
 
-      function emailValid() {
-        const em = document.getElementById('email').value.trim();
-        return emailRe.test(em);
-      }
-
-      function validate() {
-        if ( allFilled() && emailValid() && consent.checked ) {
-          submit.disabled = false;
-          submit.textContent = 'Anfrage senden';
-          submit.className = 'bg-white text-[#7C3AED] hover:bg-[#6A2ECD] hover:text-white hover:scale-105 hover:shadow-md font-medium py-3 px-6 rounded-lg transition transform';
-        } else {
-          submit.disabled = true;
-          submit.textContent = 'Bitte füllen Sie das Formular aus';
-          submit.className = 'bg-white text-[#7C3AED] disabled:cursor-not-allowed hover:scale-105 hover:shadow-md font-medium py-3 px-6 rounded-lg transition transform';
-        }
-      }
-
-      fields.concat('email').forEach(id => {
-        document.getElementById(id).addEventListener('input', validate);
+      // Alle Counter-Elemente beobachten
+      document.querySelectorAll('.countup').forEach(el => {
+        observer.observe(el);
       });
-      consent.addEventListener('change', validate);
-
-      submit.addEventListener('click', function(){
-        const nameVal  = encodeURIComponent(document.getElementById('name').value.trim());
-        const emailVal = encodeURIComponent(document.getElementById('email').value.trim());
-        const instVal  = encodeURIComponent(document.getElementById('institution').value.trim());
-        const msgVal   = encodeURIComponent(document.getElementById('message').value.trim());
-
-        const to      = 'info@ai-paco.de';
-        const cc      = emailVal;
-        const subject = encodeURIComponent('Demo-Anfrage von ' + nameVal);
-        const body    = [
-          'Name: ' + nameVal,
-          'Hochschule: ' + instVal,
-          'E-Mail: ' + emailVal,
-          '',
-          'Nachricht:',
-          msgVal
-        ].join('%0D%0A');
-
-        window.location.href = `mailto:${to}?cc=${cc}&subject=${subject}&body=${body}`;
-      });
-
-      validate();
-    })();
-
-    // Funktion für Smooth Scroll - erweitert für externe Links
+    }
+    
     function initSmoothScroll() {
+      // Bestehender Smooth-Scroll Code bleibt unverändert
       const contactLinks = document.querySelectorAll('a[href="#kontakt"]');
       
       contactLinks.forEach(link => {
         link.addEventListener('click', function(e) {
           e.preventDefault();
           
-          const targetElement = document.getElementById('kontakt');
+          const targetElement = document.getElementById('contact-form-container');
           if (targetElement) {
-            // Offset für Header + extra Abstand
             const headerOffset = 80;
             const elementPosition = targetElement.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -757,7 +689,6 @@
         });
       });
 
-      // Handler für externe Links mit Anker - HINZUGEFÜGT
       const externalAnchorLinks = document.querySelectorAll('a[href*="paco-einfuehrung.html#"]');
       
       externalAnchorLinks.forEach(link => {
@@ -767,50 +698,14 @@
           const href = this.getAttribute('href');
           const [page, anchor] = href.split('#');
           
-          // URL mit scroll-Parameter erweitern
           const targetUrl = `${page}?scroll=${anchor}#${anchor}`;
           window.location.href = targetUrl;
         });
       });
     }
-
-    // Header Loading mit Smooth Scroll Initialisierung
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('site-header').innerHTML = data;
-        
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (menuToggle && mobileMenu) {
-          menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-          });
-        }
-
-        // Smooth Scroll NACH dem Header-Laden initialisieren
-        initSmoothScroll();
-      });
-
-    // Footer Loading
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('site-footer').innerHTML = html;
-      })
-      .catch(console.error);
   </script>
 
   <!-- FOOTER -->
   <div id="site-footer"></div>
-  <script>
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('site-footer').innerHTML = html;
-      })
-      .catch(console.error);
-  </script>
 </body>
 </html>
