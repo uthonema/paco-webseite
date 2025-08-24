@@ -15,7 +15,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    html { scroll-behavior: smooth; }
+    html { 
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+    
+    /* BEIDE Selektoren für maximale Kompatibilität */
+    #contact-form-container, 
+    section.bg-\[\#7C3AED\] {
+      scroll-margin-top: 100px;
+    }
+    
     body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji'; }
   </style>
 </head>
@@ -295,9 +305,35 @@
   <script>
     // Seiten-spezifische Initialisierung
     document.addEventListener('DOMContentLoaded', function() {
+      // 1. Formular initialisieren
       initContactForm({
         containerId: 'contact-form-container',
         title: "PACO Coach Demo buchen oder Kontakt aufnehmen"
+      });
+      
+      // 2. FAIL-SAFE Lösung: Manuelle Scroll-Handler für alle "Demo buchen"-Links
+      const demoLinks = document.querySelectorAll('a[href="#contact-form-container"]');
+      demoLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Kleine Verzögerung, um sicherzustellen, dass das Formular geladen ist
+          setTimeout(() => {
+            // Finde die Kontaktformular-Section (nach der ID-Änderung)
+            const targetElement = document.querySelector('section.bg-\\[\\#7C3AED\\]');
+            
+            if (targetElement) {
+              // Präzises Scrolling mit Offset für den Header
+              const headerOffset = 100;
+              const y = targetElement.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+              
+              window.scrollTo({
+                top: y,
+                behavior: 'smooth'
+              });
+            }
+          }, 50);
+        });
       });
     });
   </script>

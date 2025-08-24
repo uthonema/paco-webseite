@@ -5,9 +5,9 @@ function initContactForm(config) {
     title = "Jetzt Demo buchen"
   } = config;
 
-  // Das ist die entscheidende Änderung: Die Section bekommt die ID des Containers.
+  // KRITISCHE ÄNDERUNG: Section bekommt dieselbe ID wie Container!
   const formHTML = `
-    <section id="${containerId}" class="bg-[#7C3AED] py-16 px-6 md:px-20 text-white">
+    <section id="${containerId}" class="bg-[#7C3AED] py-16 px-6 md:px-20 text-white scroll-mt-24">
       <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-8">
         ${title}
       </h2>
@@ -45,11 +45,12 @@ function initContactForm(config) {
       </form>
     </section>
   `;
-
-  // Formular in Container einfügen
+  
   const container = document.getElementById(containerId);
   if (container) {
     container.innerHTML = formHTML;
+    // WICHTIG: ID vom Container entfernen, um Duplikat-IDs zu vermeiden
+    container.removeAttribute('id');
   }
 
   // Form-Handler initialisieren (EXAKT wie in paco-chat.html)

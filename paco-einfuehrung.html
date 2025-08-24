@@ -21,8 +21,9 @@
       scroll-behavior: smooth;
     }
     
-    /* Für ältere Browser, die scroll-padding-top nicht unterstützen */
-    #kontakt {
+    /* WICHTIG: Beide Selektoren für maximale Kompatibilität */
+    #contact-form-container, 
+    section.bg-\[\#7C3AED\] {
       scroll-margin-top: 100px;
     }
 
@@ -331,17 +332,53 @@
       `;
     }
 
-    // Seiten-spezifische Initialisierung - NUR das Nötigste
+    // Seiten-spezifische Initialisierung mit GARANTIERTEM SCROLL-FIX
     document.addEventListener('DOMContentLoaded', function() {
+      // 1. Formular initialisieren
       initContactForm({
         containerId: 'contact-form-container',
         title: "Kontakt aufnehmen"
       });
+      
+      // 2. FAIL-SAFE Lösung: Manuelle Scroll-Handler für alle "Kontakt aufnehmen"-Links
+      const contactLinks = document.querySelectorAll('a[href="#contact-form-container"]');
+      contactLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Kleine Verzögerung, um sicherzustellen, dass das Formular geladen ist
+          setTimeout(() => {
+            // Finde die Kontaktformular-Section (nach der ID-Änderung)
+            const targetElement = document.querySelector('section.bg-\\[\\#7C3AED\\]');
+            
+            if (targetElement) {
+              // Präzises Scrolling mit Offset für den Header
+              const headerOffset = 100;
+              const y = targetElement.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+              
+              window.scrollTo({
+                top: y,
+                behavior: 'smooth'
+              });
+            }
+          }, 50);
+        });
+      });
 
-      // OPTIONAL: URL-Parameter Scroll-Handler (seiten-spezifisch)
+      // Optional: URL-Parameter Scroll-Handler bleibt
       const urlParams = new URLSearchParams(window.location.search);
       const scrollTarget = urlParams.get('scroll');
       
+      if (scrollTarget) {
+        setTimeout(() => {
+          const targetElement = document.getElementById(scrollTarget);
+          if (targetElement) {
+            const headerOffset = 100;
+            const y = targetElement.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            window.scrollTo({top: y, behavior: 'smooth'});
+          }
+        }, 300);
+      }
     });
   </script>
 </body>
