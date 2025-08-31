@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PACO Coach – Finde deinen Studiengang in 3 Minuten</title>
+  <meta name="description" content="KI-Studienberatung für 20.000 deutsche Studiengänge. Kostenlos, anonym, in 3 Minuten zum passenden Studiengang. Jetzt starten!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- ERSETZE DEN STYLE-BLOCK (Zeilen ~14-65) -->
+  <style>
+  :root{
+    --violett:#7C3AED; --hellviolett:#E9D5FF; --weiss:#FFFFFF;
+    --dunkelgrau:#1F2937; --hellgrau:#6B7280; --tuerkis:#06B6D4;
+  }
+  html { 
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    /* WORTTRENNUNG KOMPLETT DEAKTIVIERT */
+    hyphens: none;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+  }
+
+  /* ALLE ELEMENTE: KEINE WORTTRENNUNG */
+  * {
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    -ms-hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+  }
+
+  .btn{ @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm md:text-base font-medium transition; }
+  .btn-primary { background: #7C3AED; color: #FFFFFF; }
+  .btn-primary:hover { background: #6A2ECD; }
+  .btn-secondary { background: #FFFFFF; color: #7C3AED; border: 1px solid #E9D5FF; }
+  .btn-secondary:hover { background: #F9F6FF; }
+  
+  /* KOMPLETT NEUE LÖSUNG - STICKY BUTTON */
+  .fixed-cta {
+    position: fixed;
+    bottom: -100px; /* Initial versteckt */
+    left: 0;
+    right: 0;
+    padding: 0 1rem;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    z-index: 9999;
+    transition: bottom 0.3s ease-out;
+    pointer-events: none; /* Verhindert Klicks auf versteckten Button */
+  }
+  
+  .fixed-cta.visible {
+    bottom: 1rem; /* Sichtbar */
+    pointer-events: auto; /* Klicks erlaubt */
+  }
+  
+  .fixed-cta a {
+    display: block;
+    background-color: #7C3AED;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (min-width: 641px) {
+    .fixed-cta {
+      display: none;
+    }
+  }
+  </style>
+</head>
+
+<body class="bg-white text-[color:var(--dunkelgrau)]">
+  
+  <!-- HEADER - KI-Studienberatung Schriftgrößen angepasst -->
+<header class="sticky top-0 z-40 bg-[#F9FAFB]">
+  <nav class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3" aria-label="PACO Coach">
+      <img 
+        src="assets/logo-pur-lila.png" 
+        alt="PACO Logo" 
+        class="h-12 sm:h-14 md:h-16 w-auto"
+      />
+      <div class="text-[#7C3AED] leading-tight">
+        <div class="text-xl sm:text-2xl md:text-3xl font-bold">PACO Coach</div>
+        <div class="text-[13px] sm:text-[16px] md:text-[21px] -mt-1 opacity-75">KI-Studienberatung</div>
+      </div>
+    </a>
+    
+    <!-- NEUER DESKTOP CTA BUTTON -->
+    <div class="hidden md:block">
+      <a href="/coach" class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-semibold px-6 py-3 rounded-lg">
+      Direkt zu PACO Coach
+      </a>
+    </div>
+  </nav>
+</header>
+
+  <!-- 1. HERO MIT CHAT-DEMO - Badge-Position angepasst -->
+  <!-- HERO MIT SUBTILEN TRUST-ELEMENTEN -->
+  <section class="relative overflow-hidden min-h-[70vh] flex items-start bg-[#F8F6FF]">
+    <div class="mx-auto max-w-6xl px-6 md:px-20 grid lg:grid-cols-2 gap-12 items-start pt-8 pb-12">
+      
+      <!-- Links: Content -->
+      <div class="text-center lg:text-left">
+        
+        <!-- H1 -->
+        <h1 class="font-bold text-3xl md:text-5xl leading-tight md:leading-normal">
+          Welcher Bachelor-Studiengang 
+          <span class="text-[#7C3AED]">passt zu dir?</span>
+        </h1>
+        
+        <!-- Mobile: Chat-Demo direkt unter H1 -->
+        <div class="block lg:hidden mt-8 mb-8">
+          <!-- Mobile Chat kompakter -->
+          <div class="mx-auto w-64 h-[400px] bg-gray-900 rounded-[2rem] p-1.5 shadow-2xl relative">
+            <div class="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+              
+              <!-- Chat Header -->
+              <div class="bg-[#7C3AED] text-white p-4 flex items-center gap-3">
+                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                  <span class="text-sm font-bold">P</span>
+                </div>
+                <div>
+                  <div class="font-medium">PACO Coach</div>
+                  <div class="text-xs opacity-75">KI-Studienberatung</div>
+                </div>
+              </div>
+              
+              <!-- Chat Content -->
+              <div id="chatDemoMobile" class="p-4 h-[calc(100%-80px)] overflow-y-auto bg-gray-50">
+                <!-- Chat Messages werden per JavaScript eingefügt -->
+              </div>
+            </div>
+            
+            <!-- Demo Controls Mobile -->
+            <button id="demoControlsMobile" class="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white p-3 rounded-full backdrop-blur-sm transition">
+              <svg class="w-6 h-6 play-icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg class="w-6 h-6 pause-icon hidden" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <!-- CTA BUTTON -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="/coach" class="bg-[#7C3AED] hover:bg-[#6A2ECD] text-white font-medium text-xl px-10 py-5 rounded-lg transition-all transform hover:scale-105 shadow-lg">
+            🎯 Jetzt passenden Studiengang finden
+          </a>
+        </div>
+        
+        <!-- Text "Aus 10.000..." NACH Chat-Demo und CTA -->
+        <p class="mt-8 text-xl text-gray-600 max-w-2xl lg:max-w-none text-center lg:text-left">
+          <strong>10.000+ Studiengänge</strong> an <strong>400+ deutschen Hochschulen</strong>. 
+          Finde den, der <strong>wirklich zu dir passt</strong>! 
+        </p>
+      </div>
+
+      <!-- Rechts: PACO Chat Demo (Desktop) -->
+      <div class="relative justify-self-center hidden lg:block">
+        <div class="mx-auto w-72 sm:w-80 h-[500px] sm:h-[600px] bg-gray-900 rounded-[2.5rem] sm:rounded-[3rem] p-1.5 sm:p-2 shadow-2xl">
+          <div class="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+            
+            <!-- Chat Header -->
+            <div class="bg-[#7C3AED] text-white p-4 flex items-center gap-3">
+              <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                <span class="text-sm font-bold">P</span>
+              </div>
+              <div>
+                <div class="font-medium">PACO Coach</div>
+                <div class="text-xs opacity-75">KI-Studienberatung</div>
+              </div>
+            </div>
+            
+            <!-- Chat Content -->
+            <div id="chatDemo" class="p-4 h-[calc(100%-80px)] overflow-y-auto bg-gray-50">
+              <!-- Chat Messages werden per JavaScript eingefügt -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- Demo Controls Desktop -->
+        <button id="demoControls" class="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white p-3 rounded-full backdrop-blur-sm transition">
+          <svg id="playIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="pauseIcon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- 2. VORTEILE -->
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-6xl px-6 md:px-20">
+      <div class="text-center mb-12">
+        <h2 class="font-bold text-3xl md:text-5xl text-[#1F2937] mb-4">Warum PACO Coach?</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="h-16 w-16 bg-[#7C3AED]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-[#7C3AED]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 15l-6-6 8-.5z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Individuell & verständlich</h3>
+          <p class="text-[#6B7280] text-base md:text-lg">PACO führt ein persönliches Interview und erklärt Ergebnisse ohne Fachjargon.</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="h-16 w-16 bg-[#7C3AED]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-[#7C3AED]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Schnell & zeitsparend</h3>
+          <p class="text-[#6B7280] text-base md:text-lg">In nur 3 Minuten zu fundierten Studiengang-Empfehlungen.</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="h-16 w-16 bg-[#7C3AED]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-[#7C3AED]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Kostenlos & unverbindlich</h3>
+          <p class="text-[#6B7280] text-base md:text-lg">Die Nutzung von PACO Coach ist komplett kostenlos und anonym.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SO FUNKTIONIERT'S -->
+  <section id="so-funktionierts" class="bg-[#F9F6FF] py-16">
+    <div class="mx-auto max-w-6xl px-6 md:px-20">
+      <div class="text-center mb-12">
+        <h2 class="font-bold text-3xl md:text-5xl text-[#7C3AED] mb-4">So einfach geht's</h2>
+        <p class="text-base md:text-lg text-[#6B7280] max-w-2xl mx-auto">
+          In nur 3 Schritten zu deinem passenden Studiengang
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex justify-center mb-4">
+            <div class="h-12 w-12 rounded-full bg-[#7C3AED] flex items-center justify-center text-white font-bold text-lg">1</div>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Fragen beantworten</h3>
+          <p class="text-[#6B7280] text-base md:text-lg">Erzähl PACO von deinen Interessen, Stärken und Zielen.</p>
+        </div>
+        
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex justify-center mb-4">
+            <div class="h-12 w-12 rounded-full bg-[#7C3AED] flex items-center justify-center text-white font-bold text-lg">2</div>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Vorschläge erhalten</h3>
+          <p class="text-[#6B7280] text-base md:text-lg">Erhalte maßgeschneiderte Studiengänge aus ganz Deutschland.</p>
+        </div>
+        
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center">
+          <div class="flex justify-center mb-4">
+            <div class="h-12 w-12 rounded-full bg-[#7C3AED] flex items-center justify-center text-white font-bold text-lg">3</div>
+          </div>
+          <h3 class="font-semibold text-xl md:text-2xl mb-3 text-[#1F2937]">Vergleichen & entscheiden</h3>
+          <p class="text-[#6B7280] text-base md:text-lg">Vergleiche Programme und finde den besten Match für dich.</p>
+        </div>
+      </div>
+      
+      <!-- 3. ENTFERNE Section 3 CTA komplett -->
+      <!-- Kein CTA in der "So funktioniert's" Section -->
+    </div>
+  </section>
+
+  <!-- 4. TESTIMONIALS -->
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-6xl px-6 md:px-20">
+      <div class="text-center mb-12">
+        <h2 class="font-bold text-3xl md:text-5xl text-[#1F2937] mb-4">Was Studierende sagen</h2>
+        <p class="text-base md:text-lg text-[#6B7280]">Echte Erfahrungen mit PACO Coach</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
+          <div class="flex items-center mb-4">
+            <div class="h-10 w-10 bg-[#7C3AED] rounded-full flex items-center justify-center text-white font-bold">L</div>
+            <div class="ml-3">
+              <div class="font-medium">Lisa, 19</div>
+              <div class="text-sm md:text-base text-[#6B7280]">Abitur 2024</div>
+            </div>
+          </div>
+          <p class="text-[#1F2937] italic text-base md:text-lg">"PACO hat mir 3 Studiengänge vorgeschlagen, die ich nie auf dem Schirm hatte. Hab mich für Wirtschaftspsychologie entschieden!"</p>
+        </div>
+        
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
+          <div class="flex items-center mb-4">
+            <div class="h-10 w-10 bg-[#7C3AED] rounded-full flex items-center justify-center text-white font-bold">M</div>
+            <div class="ml-3">
+              <div class="font-medium">Marc, 21</div>
+              <div class="text-sm md:text-base text-[#6B7280]">Studienortwechsel</div>
+            </div>
+          </div>
+          <p class="text-[#1F2937] italic text-base md:text-lg">"Nach 2 Semestern Jura wollte ich was anderes. PACO zeigte mir Rechtsinformatik - perfekt für mich!"</p>
+        </div>
+        
+        <div class="bg-white border border-[#E9D5FF] rounded-xl p-6 text-center shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
+          <div class="flex items-center mb-4">
+            <div class="h-10 w-10 bg-[#7C3AED] rounded-full flex items-center justify-center text-white font-bold">S</div>
+            <div class="ml-3">
+              <div class="font-medium">Sarah, 20</div>
+              <div class="text-sm md:text-base text-[#6B7280]">Beruflich Qualifizierte</div>
+            </div>
+          </div>
+          <p class="text-[#1F2937] italic text-base md:text-lg">"Ohne Abi studieren? PACO erklärte mir alle Wege und fand Unis, die meine Berufserfahrung anerkennen."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FAQ (HINZUFÜGEN) -->
+<section class="bg-[#F9F6FF] py-16">
+  <div class="mx-auto max-w-4xl px-6 md:px-20">
+    <div class="text-center mb-12">
+      <h2 class="font-bold text-3xl md:text-5xl text-[#1F2937] mb-4">Häufige Fragen</h2>
+    </div>
+    
+    <div class="space-y-4">
+      <details class="bg-white rounded-xl p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold text-lg text-[#1F2937]">Ist PACO Coach wirklich kostenlos?</summary>
+        <p class="mt-3 text-[#6B7280] text-base md:text-lg">Ja, PACO Coach ist komplett kostenlos nutzbar. Keine versteckten Kosten, keine Abos.</p>
+      </details>
+      
+      <details class="bg-white rounded-xl p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold text-lg text-[#1F2937]">Wie funktioniert der Datenschutz?</summary>
+        <p class="mt-3 text-[#6B7280] text-base md:text-lg">Du kannst PACO anonym nutzen. Alle Details zu Datenschutz und Speicherung findest du vor dem Start.</p>
+      </details>
+      
+      <details class="bg-white rounded-xl p-6 shadow-sm">
+        <summary class="cursor-pointer font-semibold text-lg text-[#1F2937]">Bekomme ich nur einen Vorschlag?</summary>
+        <p class="mt-3 text-[#6B7280] text-base md:text-lg">Nein, du erhältst mehrere passende Studiengänge und kannst sie nach deinen Kriterien vergleichen.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 6. FINAL CTA -->
+<section id="start" class="bg-[#7C3AED] text-center py-16 px-6 md:px-20">
+  <div class="mx-auto max-w-4xl text-white">
+    <h2 class="font-bold text-3xl md:text-5xl mb-6">
+      Bereit für deinen Traumstudiengang?
+    </h2>
+    <p class="text-base md:text-lg mb-8 text-white/90">
+      Über 3.000 Studierende haben bereits beraten lassen.
+    </p>
+    <a href="/coach" class="bg-white text-[#7C3AED] font-medium text-xl px-12 py-6 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg inline-block">
+      Jetzt beraten lassen
+    </a>
+    <p class="mt-6 text-white/80 text-sm md:text-base">
+      ✅ 100% kostenlos • ✅ Dauert nur 3 Minuten • ✅ Top Ergebnisse
+    </p>
+  </div>
+</section>
+
+  <!-- FOOTER - "PACO Coach" entfernt -->
+  <footer class="bg-gray-900 text-white py-10">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="flex flex-wrap items-center justify-between gap-6">
+
+        <div class="flex gap-6 text-sm">
+          <a href="/impressum" class="hover:text-[#06B6D4] transition">Impressum</a>
+          <a href="/datenschutz" class="hover:text-[#06B6D4] transition">Datenschutz</a>
+          <a href="https://ai-paco.de" class="text-[#06B6D4] hover:underline">Für Hochschulen</a>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+        &copy; <span id="year"></span> PACO. Alle Rechte vorbehalten.
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY MOBILE CTA - KOMPLETT ÜBERARBEITET -->
+  <div class="fixed-cta">
+    <a href="#start" class="block bg-[#7C3AED] text-white font-bold text-center py-4 rounded-xl shadow-lg">
+     🎯 Studienberatung starten
+    </a>
+  </div>
+
+  <!-- ERSETZE DAS JAVASCRIPT (Zeilen ~350-500) -->
+<script>
+// Chat Demo Animation
+const chatMessages = [
+  { type: 'bot', text: 'Hi! Ich bin PACO 🎓 Lass uns zusammen deinen perfekten Studiengang finden!', delay: 500 },
+  { type: 'bot', text: 'Was interessiert dich am meisten?', delay: 1500, options: ['Technik & IT', 'Wirtschaft', 'Kreatives', 'Soziales'] },
+  { type: 'user', text: 'Technik & IT', delay: 3000 },
+  { type: 'bot', text: 'Cool! Arbeitest du lieber im Team oder alleine?', delay: 3500, options: ['Team', 'Alleine', 'Beides'] },
+  { type: 'user', text: 'Team', delay: 5000 },
+  { type: 'bot', text: '✨ Perfekt! Basierend auf deinen Antworten habe ich 3 super passende Studiengänge gefunden:', delay: 5500 },
+  { type: 'result', programs: [
+    { name: 'Wirtschaftsinformatik', match: '94%', uni: 'Uni Köln' },
+    { name: 'Digital Business', match: '91%', uni: 'HS Mannheim' },
+    { name: 'IT-Management', match: '88%', uni: 'FH Köln' }
+  ], delay: 6500 }
+];
+
+let demoInterval;
+let isPlaying = true;
+
+function animateChatDemo() {
+  // BEIDE Chat-Container ansprechen
+  const chatContainerDesktop = document.getElementById('chatDemo');
+  const chatContainerMobile = document.getElementById('chatDemoMobile');
+  
+  // Beide Container clearen
+  if (chatContainerDesktop) chatContainerDesktop.innerHTML = '';
+  if (chatContainerMobile) chatContainerMobile.innerHTML = '';
+  
+  clearTimeout(demoInterval);
+  
+  chatMessages.forEach((message, index) => {
+    demoInterval = setTimeout(() => {
+      addChatMessage(message);
+      
+      if (index === chatMessages.length - 1) {
+        setTimeout(() => {
+          setTimeout(() => {
+            animateChatDemo(); // Endlos-Schleife
+          }, 3000);
+        }, 1000);
+      }
+    }, message.delay);
+  });
+}
+
+function addChatMessage(message) {
+  // BEIDE Container ansprechen
+  const chatContainerDesktop = document.getElementById('chatDemo');
+  const chatContainerMobile = document.getElementById('chatDemoMobile');
+  
+  const containers = [chatContainerDesktop, chatContainerMobile].filter(container => container);
+  
+  containers.forEach(chatContainer => {
+    const messageDiv = document.createElement('div');
+    
+    if (message.type === 'bot') {
+      messageDiv.innerHTML = `
+        <div class="flex gap-2 mb-4 animate-fade-in">
+          <div class="w-8 h-8 bg-[#7C3AED] rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">P</div>
+          <div class="bg-white rounded-2xl rounded-tl-sm p-3 max-w-[85%] shadow-sm">
+            <p class="text-sm text-gray-800">${message.text}</p>
+            ${message.options ? `
+              <div class="mt-2 flex flex-wrap gap-1">
+                ${message.options.map(opt => `<div class="bg-[#7C3AED]/10 border border-[#7C3AED]/20 text-[#7C3AED] text-xs px-2 py-1 rounded-full">${opt}</div>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    } else if (message.type === 'user') {
+      messageDiv.innerHTML = `
+        <div class="flex justify-end mb-4 animate-fade-in">
+          <div class="bg-[#7C3AED] text-white rounded-2xl rounded-tr-sm p-3 max-w-[85%] shadow-sm">
+            <p class="text-sm">${message.text}</p>
+          </div>
+        </div>
+      `;
+    } else if (message.type === 'result') {
+      messageDiv.innerHTML = `
+        <div class="mb-4 animate-fade-in">
+          <div class="space-y-2">
+            ${message.programs.map(prog => `
+              <div class="bg-gradient-to-r from-[#7C3AED] to-[#6A2ECD] text-white rounded-xl p-3 shadow-lg">
+                <div class="flex justify-between items-center">
+                  <div>
+                    <div class="font-medium text-sm">${prog.name}</div>
+                    <div class="text-xs opacity-75">${prog.uni}</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-lg font-bold">${prog.match}</div>
+                    <div class="text-xs opacity-75">Match</div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    
+    chatContainer.appendChild(messageDiv);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  });
+}
+
+// Demo Controls - BEIDE Buttons ansprechen
+function setupDemoControls() {
+  const demoControlsDesktop = document.getElementById('demoControls');
+  const demoControlsMobile = document.getElementById('demoControlsMobile');
+  
+  [demoControlsDesktop, demoControlsMobile].forEach(control => {
+    if (control) {
+      control.addEventListener('click', () => {
+        const playIcon = control.querySelector('.play-icon');
+        const pauseIcon = control.querySelector('.pause-icon');
+        
+        if (isPlaying) {
+          clearTimeout(demoInterval);
+          playIcon?.classList.remove('hidden');
+          pauseIcon?.classList.add('hidden');
+          isPlaying = false;
+        } else {
+          animateChatDemo();
+          playIcon?.classList.add('hidden');
+          pauseIcon?.classList.remove('hidden');
+          isPlaying = true;
+        }
+      });
+    }
+  });
+}
+
+// Sticky CTA
+let lastScrollTop = 0;
+const fixedCta = document.querySelector('.fixed-cta');
+
+// Initial ausblenden, damit es nicht kurz sichtbar ist
+if (fixedCta) fixedCta.style.opacity = '0';
+
+// Erst nach 500ms einschalten (verhindert Flackern beim Laden)
+setTimeout(() => {
+  if (fixedCta) fixedCta.style.opacity = '1';
+}, 500);
+
+window.addEventListener('scroll', () => {
+  const st = window.pageYOffset || document.documentElement.scrollTop;
+  
+  // Nur anzeigen, wenn genug gescrollt wurde
+  if (st > window.innerHeight * 0.5) {
+    fixedCta?.classList.add('visible');
+  } else {
+    fixedCta?.classList.remove('visible');
+  }
+  
+  lastScrollTop = st <= 0 ? 0 : st;
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  animateChatDemo();
+  setupDemoControls();
+  document.getElementById('year').textContent = new Date().getFullYear();
+  
+  // Sticky Button Management
+  const fixedCta = document.querySelector('.fixed-cta');
+  
+  function handleScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollPosition > window.innerHeight * 0.3) {
+      fixedCta?.classList.add('visible');
+    } else {
+      fixedCta?.classList.remove('visible');
+    }
+  }
+  
+  // Initial ausblenden
+  if (fixedCta) fixedCta.classList.remove('visible');
+  
+  // Scroll-Handler hinzufügen
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Prüfen beim Laden
+  setTimeout(() => {
+    handleScroll();
+  }, 500);
+});
+</script>
+  
+  <style>
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.5s ease-out;
+    }
+  </style>
+</body>
+</html>

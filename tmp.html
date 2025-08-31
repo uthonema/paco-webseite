@@ -1,0 +1,1640 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PACO Coach – Chat-Demo</title>
+  <meta name="description" content="Minimaler PACO Coach Chat-Demo-Screen mit animierten Nachrichten." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --violett:#7C3AED; --hellviolett:#E9D5FF; --weiss:#FFFFFF;
+      --dunkelgrau:#1F2937; --hellgrau:#6B7280;
+    }
+    html,body{height:100%;margin:0;padding:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(85% 85% at 50% 15%, #F8F6FF 0%, #FFFFFF 60%);
+      color: var(--dunkelgrau);
+      display:grid; place-items:center;
+    }
+    
+    /* EXAKTE DIMENSIONEN AUS STUDIENBERATUNG.HTML */
+    .frame{
+      width: 288px; /* w-72 = 18rem = 288px */
+      height: 600px; /* h-[600px] */
+      background: #1F2937; /* bg-gray-900 */
+      border-radius: 48px; /* rounded-[3rem] */
+      box-shadow: 0 20px 50px rgba(31,41,55,.15); /* shadow-2xl */
+      overflow: hidden; 
+      position: relative; 
+      padding: 8px; /* p-2 */
+    }
+    
+    .screen{
+      width: 100%; 
+      height: 100%;
+      background: #fff; 
+      border-radius: 40px; /* KORRIGIERT: war 32px, muss kleiner sein als Frame */
+      overflow: hidden; 
+      position: relative;
+    }
+    
+    /* HEADER STYLING EXAKT ANGEPASST */
+    .header{
+      background: #F5F7FA; /* Neuer heller Hintergrund */
+      color: #7C3AED; /* Lila Text */
+      padding: 20px 16px; /* Höheres Padding für 25% mehr Höhe */
+      display: flex; 
+      align-items: center; 
+      gap: 15px; /* Etwas größerer Gap */
+      height: 40px; /* 25% größer: 32px → 40px */
+    }
+    
+    /* GLEICHE TEXT STYLES */
+    .title {
+      font-weight: 500; /* font-medium */
+      font-size: 20px; /* 25% größer: 16px → 20px */
+      line-height: 1.25;
+    }
+    
+    /* ERSETZE DIE .badge KLASSE (Zeilen 55-60) */
+    .badge{ 
+      font-size: 13.2px; /* 20% größer: 12px → 14.4px */
+      opacity: .75; 
+      line-height: 1;
+      color: #7C3AED; /* Lila statt weiß */
+    }
+    
+    /* AVATAR STYLING */
+    .avatar{
+      width: 32px; /* w-8 = 2rem = 32px */
+      height: 32px; /* h-8 = 2rem = 32px */
+      border-radius: 9999px; 
+      background: rgba(255,255,255,0.2); /* bg-white/20 */
+      display: grid; 
+      place-items: center; 
+      font-weight: 700; 
+      font-size: 14px; /* text-sm */
+      flex-shrink: 0;
+    }
+    
+    /* ERSETZE DEN AVATAR/LOGO (Zeilen 63-72) */
+    .logo{
+      width: 40px; /* 25% größer: 32px → 40px */
+      height: 40px; /* 25% größer: 32px → 40px */
+      flex-shrink: 0;
+    }
+    
+    /* STARTBILDSCHIRM STYLING */
+    .start-screen {
+      height: calc(100% - 64px);
+      padding: 20px 16px 80px 16px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .question {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 1.3;
+      color: #1F2937;
+    }
+    
+    .subjects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      max-width: 250px; /* GEÄNDERT: Von 240px auf 250px */
+    }
+    
+    .subject-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+    
+    .subject-btn {
+      padding: 8px 12px;
+      border: 1px solid #1F2937;
+      border-radius: 25px;
+      background: #fff;
+      color: #000;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: default;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    
+    .subject-btn.active {
+      background: #7C3AED;
+      color: #fff;
+      border: 1.5px solid #7C3AED;
+    }
+    
+    /* ERSETZE DIE .bottom-nav KLASSE (Zeilen 158-166) */
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #F5F7FA; /* Gleiche Farbe wie Header */
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .next-btn {
+      background: #7C3AED;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: default;
+    }
+    
+    .next-btn.active {
+      background: #5B21B6; /* Dunkleres Lila */
+      transform: scale(0.96); /* Leicht gedrückt */
+      box-shadow: 0 2px 8px rgba(124,58,237,0.4); /* Weniger Schatten */
+      transition: all 0.15s ease;
+    }
+    
+    /* CHAT LOG AREA */
+    .log{
+      height: calc(100% - 80px); /* Angepasst von 64px auf 80px */
+      padding: 16px; /* p-4 = 1rem = 16px */
+      overflow-y: auto; 
+      background: #F9FAFB; /* bg-gray-50 */
+      display: none;
+    }
+    
+    /* NACHRICHTEN STYLING */
+    .row{ display:flex; gap:8px; margin:16px 0; }
+    .row.user{ justify-content:flex-end; }
+    .bubble{
+      max-width: 85%; /* wie in studienberatung */
+      padding: 12px; /* p-3 */
+      border-radius: 18px; /* rounded-2xl */
+      box-shadow: 0 1px 2px rgba(0,0,0,.04); /* shadow-sm */
+      background:#fff; 
+      font-size: 14px; /* text-sm */
+      line-height:1.4;
+    }
+    .row.user .bubble{ 
+      background: var(--violett); 
+      color:#fff; 
+      border-top-right-radius: 4px; /* rounded-tr-sm */
+    }
+    .row.bot .bubble{ 
+      border-top-left-radius: 4px; /* rounded-tl-sm */
+    }
+    .row.bot .avatar{ 
+      width:32px; 
+      height:32px; 
+      background: var(--violett); 
+      color:#fff;
+      flex-shrink:0;
+    }
+    
+    /* OPTION CHIPS */
+    .chips{ 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 4px; 
+      margin-top: 8px;
+    }
+    
+    .chip{
+      font-size: 12px; /* text-xs */
+      padding: 4px 8px; /* px-2 py-1 */
+      border-radius: 9999px; /* rounded-full */
+      background: rgba(124,58,237,.1); /* bg-[#7C3AED]/10 */
+      color: var(--violett); 
+      border: 1px solid rgba(124,58,237,.2); /* border border-[#7C3AED]/20 */
+    }
+    
+    /* ERGEBNIS CARDS */
+    .card{
+      background: linear-gradient(90deg, #7C3AED, #6A2ECD); /* from-[#7C3AED] to-[#6A2ECD] */
+      color:#fff; 
+      border-radius: 12px; /* rounded-xl */
+      padding: 12px; /* p-3 */
+      margin: 8px 0; 
+      box-shadow: 0 6px 16px rgba(124,58,237,.25); /* shadow-lg */
+    }
+    
+    .card-content{ 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+    }
+    
+    .card-left .name{ 
+      font-weight: 500; /* font-medium */
+      font-size: 14px; /* text-sm */
+      margin-bottom: 2px;
+    }
+    
+    .card-left .uni{ 
+      opacity: .75; 
+      font-size: 12px; /* text-xs */
+    }
+    
+    .card-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .star-rating {
+      display: flex;
+      gap: 1px;
+      font-size: 8px; /* GEÄNDERT: Von 11px auf 8px (30% kleiner) */
+      line-height: 1;
+    }
+
+    .star {
+      color: #7C3AED; /* GEÄNDERT: Von #FCD34D auf #7C3AED (lila) */
+    }
+
+    .star.empty {
+      color: #E9D5FF; /* GEÄNDERT: Von #E5E7EB auf #E9D5FF (helles lila) */
+    }
+
+    .fit-label {
+      font-size: 10px; /* GEÄNDERT: Von 11px auf 10px */
+      color: #6B7280;
+      font-weight: 500;
+    }
+    
+    /* STYLING FÜR DIE AUSWÄHLBAREN STUDIENGANGSKACHELN */
+    .course-card {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      color: #1F2937;
+      border-radius: 12px;
+      padding: 10px; /* GEÄNDERT: Von 12px auf 10px */
+      margin: 6px 0; /* GEÄNDERT: Von 8px auf 6px */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      cursor: pointer; /* HINZUGEFÜGT: Cursor zeigt Klickbarkeit */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::after {
+      display: none; /* HINZUGEFÜGT: Versteckt das Checkmark komplett */
+    }
+
+    .course-card.selected::after {
+      display: none; /* HINZUGEFÜGT: Auch bei ausgewählten Karten kein Haken */
+    }
+
+    .course-card.selected {
+      border-color: #7C3AED;
+      background: linear-gradient(90deg, #7C3AED, #6A2ECD);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(124,58,237,0.25);
+    }
+
+    .course-card.selected .card-left .name,
+    .course-card.selected .card-left .uni,
+    .course-card.selected .card-right .fit-label {
+      color: inherit;
+    }
+
+    .course-card.selected .card-left .uni,
+    .course-card.selected .card-right .fit-label {
+      opacity: 0.9;
+    }
+
+    /* Animation für Karten-Tap */
+    @keyframes card-tap {
+      0% { transform: scale(0.98); }
+      100% { transform: scale(1); }
+    }
+
+    .course-card.tap-animation {
+      animation: card-tap 0.2s ease-out;
+    }
+    
+    /* ERGÄNZE STYLING FÜR AUSGEWÄHLTE KARTEN */
+    .course-card.selected .star {
+      color: #FCD34D; /* Goldene Sterne auf lila Hintergrund */
+    }
+
+    .course-card.selected .star.empty {
+      color: rgba(255,255,255,0.3); /* Transparente leere Sterne */
+    }
+
+    /* ANIMATION GENAU WIE IN STUDIENBERATUNG */
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate {
+      animation: fade-in 0.5s ease-out;
+    }
+    
+    @media (prefers-reduced-motion: reduce){
+      .animate{ animation-duration:.01ms; animation-iteration-count:1; }
+    }
+    
+    .hidden { display: none !important; }
+    
+    /* ERSETZE DIE .back-btn KLASSE (Zeilen 309-318) */
+    .back-btn {
+      background: #FFFFFF; /* Weiße Füllung */
+      color: #1F2937;
+      border: 1px solid #E5E7EB;
+      border-radius: 25px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: default;
+    }
+    
+    /* SLIDER SCREEN STYLING */
+    .slider-screen {
+      height: calc(100% - 80px);
+      padding: 20px 16px 80px 16px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      display: none; /* Zunächst versteckt */
+    }
+
+    .slider-question {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.3;
+      color: #1F2937;
+    }
+
+    .slider-container {
+      width: 100%;
+      max-width: 250px; /* GEÄNDERT: Von 240px auf 250px */
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .slider-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .slider-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+      text-align: left;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+      height: 6px;
+      background: #E5E7EB;
+      border-radius: 3px;
+    }
+
+    .slider-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: #7C3AED;
+      border-radius: 3px;
+      transition: width 0.8s ease-out;
+      width: 0%;
+    }
+
+    .slider-thumb {
+      position: absolute;
+      top: -6px;
+      right: 100%; /* GEÄNDERT: Startet jetzt immer ganz links */
+      width: 18px;
+      height: 18px;
+      background: #7C3AED;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: right 0.8s ease-out;
+      transform: translateX(50%); /* Zentriert den Kreis auf der Position */
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 14px;
+      color: #6B7280;
+    }
+    
+    /* FÜGE NACH .slider-labelS HINZU (nach Zeile 409) */
+    /* INTERESTS SCREEN STYLING */
+    .interests-screen {
+      height: calc(100% - 80px);
+      padding: 20px 0 80px 0; /* GEÄNDERT: Nur oben/unten Padding */
+      background: #fff;
+      display: none; /* Zunächst versteckt */
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* HINZUGEFÜGT: Explizite Ausrichtung */
+    }
+
+    .interests-title {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 1.3;
+      color: #1F2937;
+      padding: 0 16px; /* HINZUGEFÜGT: Padding nur für den Titel */
+    }
+
+    .interests-container {
+      width: calc(100% - 32px); /* GEÄNDERT: Berücksichtigt 16px links + rechts */
+      max-width: 250px; /* Von 240px → 250px */
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 0 auto;
+    }
+
+    .interest-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .interest-question {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+      text-align: center; /* GEÄNDERT: left → center */
+    }
+
+    /* ERSETZE DIE .interest-input KLASSE (Zeilen 462-476) */
+    .interest-input {
+      width: 100%;
+      padding: 12px; /* GEÄNDERT: Mehr Padding für höhere Box */
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #1F2937;
+      background: #fff;
+      resize: none;
+      height: 72px; /* GEÄNDERT: 50% höher - 48px → 72px */
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      outline: none;
+      transition: border-color 0.2s ease;
+      overflow: hidden;
+      line-height: 1.2;
+      text-align: left;
+      box-sizing: border-box; /* HINZUGEFÜGT: Wichtig für korrekte Größenberechnung */
+    }
+    
+    /* FÜGE NACH DER .interest-input KLASSE HINZU (nach Zeile 504) */
+    /* HOCHSCHUL-FILTER SCREEN STYLING */
+    .filter-screen {
+      height: calc(100% - 80px);
+      padding: 20px 0 80px 0;
+      background: #fff;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    .filter-title {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 25px;
+      line-height: 1.3;
+      color: #1F2937;
+      padding: 0 16px;
+    }
+
+    .filter-container {
+      width: calc(100% - 32px);
+      max-width: 250px; /* Von 240px → 250px */
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 0 auto;
+    }
+
+    .filter-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .filter-label {
+      font-size: 16px; /* GEÄNDERT: Von 14px auf 16px (gleich wie .slider-label) */
+      font-weight: 600;
+      color: #1F2937; /* GEÄNDERT: Von #6B7280 auf #1F2937 (gleich wie .slider-label) */
+      text-align: left;
+    }
+
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      padding: 8px 12px;
+      border: 1px solid #E5E7EB;
+      border-radius: 20px;
+      background: #fff;
+      color: #1F2937;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: default;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .filter-btn.active {
+      background: #7C3AED;
+      color: #fff;
+      border: 1px solid #7C3AED;
+    }
+
+    .city-input-container {
+      position: relative;
+    }
+
+    .city-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #1F2937;
+      background: #fff;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      outline: none;
+      transition: border-color 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .city-input::placeholder {
+      color: #9CA3AF;
+    }
+
+    .city-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .city-tag {
+      background: #7C3AED;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .city-tag .remove {
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: 2px;
+    }
+
+    /* ALLE CONTAINER AUF 250px ERHÖHEN */
+
+    /* Startbildschirm */
+    .subjects-grid {
+      max-width: 250px;
+    }
+
+    /* Slider-Screen */
+    .slider-container {
+      max-width: 250px;
+    }
+
+    /* Interessen-Screen */
+    .interests-container {
+      max-width: 250px;
+    }
+
+    /* Filter-Screen */
+    .filter-container {
+      max-width: 250px;
+    }
+    
+    /* VERGLEICH SCREEN STYLING */
+    .compare-screen {
+      height: calc(100% - 80px);
+      padding: 20px 0 80px 0;
+      background: #fff;
+      display: none; /* Zunächst versteckt */
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    .compare-title {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 25px;
+      line-height: 1.3;
+      color: #1F2937;
+      padding: 0 16px;
+    }
+
+    .compare-container {
+      width: calc(100% - 32px);
+      max-width: 250px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 0 auto;
+    }
+
+    .compare-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    /* FÜGE NACH DER .bottom-nav KLASSE HINZU (ca. Zeile 216) */
+    .chat-bottom-nav {
+      position: absolute; /* GEÄNDERT: Von fixed auf absolute */
+      bottom: 0;
+      left: 0; /* GEÄNDERT: Von 8px auf 0 */
+      right: 0; /* GEÄNDERT: Von 8px auf 0 */
+      background: #F5F7FA;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+    }
+
+    .next-btn.disabled {
+      background: #A78BFA;
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    
+    /* ERGÄNZE DIESES CSS FÜR ÜBERSCHRIFT (nach Zeile 651) */
+    .chat-title {
+      padding: 10px 0 20px 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    .chat-title h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1F2937;
+      margin: 0;
+    }
+
+    .subline {
+      text-align: center;
+      font-size: 12px;
+      color: #6B7280;
+      margin-bottom: 20px;
+      padding: 0 16px;
+      line-height: 1.4;
+    }
+
+    /* FÜGE NACH DER .subline KLASSE HINZU (nach Zeile 725) */
+    .hint-banner {
+      background: var(--hellviolett);
+      color: var(--violett);
+      border: 1px solid #E9D5FF;
+      border-radius: 12px;
+      padding: 8px 12px;
+      margin: 8px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.4;
+      display: none;
+      animation: fade-in 0.3s ease-out;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* ERSETZE DIE .subline KLASSE MIT .context-banner (Zeile 720-727) */
+    .context-banner {
+      background: var(--hellviolett);
+      color: var(--violett);
+      border: 1px solid #E9D5FF;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin: 0 16px 20px 16px;
+      font-size: 11px; /* GEÄNDERT: Von 13px auf 11px (2px kleiner) */
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* GEÄNDERT: Von flex-start auf center (zentriert) */
+      text-align: center; /* HINZUGEFÜGT: Explizite Zentrierung */
+      transition: all 0.3s ease;
+    }
+
+    .banner-icon {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .context-banner.highlight {
+      background: var(--violett);
+      color: #fff;
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(124,58,237,0.3);
+    }
+
+    /* FÜGE PULSE-ANIMATION HINZU (nach der .context-banner.highlight Klasse, Zeile 775) */
+    @keyframes pulse {
+      0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      }
+      50% { 
+        transform: scale(1.02); 
+        box-shadow: 0 4px 12px rgba(124,58,237,0.15);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frame" role="application" aria-label="PACO Coach Chat-Demo">
+    <div class="screen">
+      <!-- Chat Header -->
+      <div class="header">
+        <img src="assets/logo-pur-lila.png" alt="PACO Logo" class="logo" />
+        <div>
+          <div class="title">PACO Coach</div>
+          <div class="badge">KI-Studienberatung</div>
+        </div>
+      </div>
+      
+      <!-- Startbildschirm -->
+      <div id="startScreen" class="start-screen">
+        <div class="question">
+          Welche Fächer haben dich in der Schule interessiert?
+        </div>
+        
+        <div class="subjects-grid">
+          <div class="subject-row">
+            <div class="subject-btn" data-subject="Biologie">Biologie</div>
+            <div class="subject-btn" data-subject="Chemie">Chemie</div>
+            <div class="subject-btn" data-subject="Deutsch">Deutsch</div>
+          </div>
+          <div class="subject-row">
+            <div class="subject-btn" data-subject="Englisch">Englisch</div>
+            <div class="subject-btn" data-subject="Ethik">Ethik</div>
+            <div class="subject-btn" data-subject="Geographie">Geographie</div>
+          </div>
+          <div class="subject-row">
+            <div class="subject-btn" data-subject="Geschichte">Geschichte</div>
+            <div class="subject-btn" data-subject="Informatik">Informatik</div>
+            <div class="subject-btn" data-subject="Kunst">Kunst</div>
+          </div>
+          <div class="subject-row">
+            <div class="subject-btn" data-subject="Literatur">Literatur</div>
+            <div class="subject-btn" data-subject="Mathe">Mathe</div>
+            <div class="subject-btn" data-subject="Musik">Musik</div>
+          </div>
+          <div class="subject-row">
+            <div class="subject-btn" data-subject="Physik">Physik</div>
+            <div class="subject-btn" data-subject="Politik">Politik</div>
+            <div class="subject-btn" data-subject="Psychologie">Psychologie</div>
+          </div>
+          <div class="subject-row">
+            <div class="subject-btn" data-subject="Pädagogik">Pädagogik</div>
+            <div class="subject-btn" data-subject="Recht">Recht</div>
+            <div class="subject-btn" data-subject="Sozialkunde">Sozialkunde</div>
+          </div>
+          <div class="subject-row">
+            <div class="subject-btn" data-subject="Sport">Sport</div>
+            <div class="subject-btn" data-subject="Sprachen">Sprachen</div>
+            <div class="subject-btn" data-subject="Wirtschaft">Wirtschaft</div>
+          </div>
+        </div>
+        
+        <div class="bottom-nav">
+          <div class="back-btn">Zurück</div>
+          <div class="next-btn">Weiter</div>
+        </div>
+      </div>
+
+      <!-- Slider-Bildschirm -->
+      <div id="sliderScreen" class="slider-screen">
+        <div class="slider-question">
+          Wie wichtig sind dir diese Aspekte deines Studiums?
+        </div>
+        
+        <div class="slider-container">
+          <div class="slider-item">
+            <div class="slider-label">Wie wichtig ist dir Theorie?</div>
+            <div class="slider-wrapper">
+              <div class="slider-track" id="theory-track"></div>
+              <div class="slider-thumb" id="theory-thumb"></div>
+            </div>
+            <div class="slider-labels">
+              <span>Unwichtig</span>
+              <span>Sehr wichtig</span>
+            </div>
+          </div>
+          
+          <div class="slider-item">
+            <div class="slider-label">Wie wichtig ist dir Praxis?</div>
+            <div class="slider-wrapper">
+              <div class="slider-track" id="application-track"></div>
+              <div class="slider-thumb" id="application-thumb"></div>
+            </div>
+            <div class="slider-labels">
+              <span>Unwichtig</span>
+              <span>Sehr wichtig</span>
+            </div>
+          </div>
+          
+          <div class="slider-item">
+            <div class="slider-label">Wie wichtig ist dir ein Auslandssemester?</div>
+            <div class="slider-wrapper">
+              <div class="slider-track" id="cooperation-track"></div>
+              <div class="slider-thumb" id="cooperation-thumb"></div>
+            </div>
+            <div class="slider-labels">
+              <span>Unwichtig</span>
+              <span>Sehr wichtig</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bottom-nav">
+          <div class="back-btn">Zurück</div>
+          <div class="next-btn">Weiter</div>
+        </div>
+      </div>
+
+      <!-- Interessen-Bildschirm -->
+      <div id="interestsScreen" class="interests-screen">
+        <div class="interests-title">
+          Sag mir was über deine Interessen!
+        </div>
+        
+        <div class="interests-container">
+          <div class="interest-item">
+            <div class="interest-question">Welche Praktika haben dir Spaß gemacht?</div>
+            <textarea class="interest-input" id="praktika-input" readonly></textarea>
+          </div>
+          
+          <div class="interest-item">
+            <div class="interest-question">Hast du einen Traumberuf?</div>
+            <textarea class="interest-input" id="traumberuf-input" readonly></textarea>
+          </div>
+        </div>
+        
+        <div class="bottom-nav">
+          <div class="back-btn">Zurück</div>
+          <div class="next-btn">Weiter</div>
+        </div>
+      </div>
+      <!-- Hochschul-Filter-Bildschirm -->
+      <div id="filterScreen" class="filter-screen">
+        <div class="filter-title">
+          Finde deine Hochschule
+        </div>
+        
+        <div class="filter-container">
+          <div class="filter-section">
+            <div class="filter-label">Studienformat</div>
+            <div class="filter-options">
+              <div class="filter-btn" data-filter="vollzeit">Vollzeit</div>
+              <div class="filter-btn" data-filter="teilzeit">Teilzeit</div>
+            </div>
+          </div>
+          
+          <div class="filter-section">
+            <div class="filter-label">Träger</div>
+            <div class="filter-options">
+              <div class="filter-btn" data-filter="oeffentlich">Öffentlich</div>
+              <div class="filter-btn" data-filter="privat">Privat</div>
+              <div class="filter-btn" data-filter="kirchlich">Kirchlich</div>
+            </div>
+          </div>
+          
+          <div class="filter-section">
+            <div class="filter-label">Städte</div>
+            <div class="city-input-container">
+              <input type="text" class="city-input" id="cityInput" placeholder="Gib eine Stadt ein..." readonly>
+            </div>
+            <div class="city-tags" id="cityTags">
+              <!-- Stadt-Tags werden dynamisch hinzugefügt -->
+            </div>
+          </div>
+          
+          <div class="filter-section">
+            <div class="filter-label">Umkreissuche</div>
+            <div class="filter-options">
+              <div class="filter-btn" data-filter="ohne">Ohne</div>
+              <div class="filter-btn" data-filter="50km">50km</div>
+              <div class="filter-btn" data-filter="100km">100km</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bottom-nav">
+          <div class="back-btn">Zurück</div>
+          <div class="next-btn">Weiter</div>
+        </div>
+      </div>
+
+      <!-- Vergleichs-Bildschirm -->
+      <div id="compareScreen" class="compare-screen">
+        <div class="compare-title">
+          Vergleich
+        </div>
+        
+        <div class="compare-container">
+          <!-- Hier werden die ausgewählten Studiengänge verglichen -->
+          <div id="compareContent" class="compare-content">
+            <!-- Wird dynamisch befüllt -->
+          </div>
+        </div>
+        
+        <div class="bottom-nav">
+          <div class="back-btn">Zurück</div>
+          <div class="next-btn">Weiter</div>
+        </div>
+      </div>
+
+      <!-- Chat Content Area -->
+      <div id="chatDemo" class="log" role="log" aria-live="polite" aria-relevant="additions"></div>
+    </div>
+  </div>
+
+  <script>
+  // Chat Demo Animation (exakt wie in studienberatung.html)
+  const chatMessages = [
+    { 
+      type: 'title', 
+      text: 'Auswahl Studiengänge', 
+      delay: 500 
+    },
+    { 
+      type: 'courses', 
+      courses: [
+        { id: 1, name: 'Wirtschaftsinformatik', stars: 5, uni: 'Bachelor of Science' },
+        { id: 2, name: 'Volkswirtschaftslehre', stars: 5, uni: 'Bachelor of Science' },
+        { id: 3, name: 'Management, Economics, and Social Science', stars: 4, uni: 'Bachelor of Science' },
+        { id: 4, name: 'Betriebswirtschaftslehre', stars:3, uni: 'Bachelor of Science' },
+        { id: 5, name: 'Sozialwissenschften', stars: 2, uni: 'Bachelor of Science' }
+      ], 
+      delay: 1500 
+    }
+  ];
+
+  const chatEl = document.getElementById('chatDemo');
+  const startScreenEl = document.getElementById('startScreen');
+  const sliderScreenEl = document.getElementById('sliderScreen');
+  const interestsScreenEl = document.getElementById('interestsScreen');
+  const filterScreenEl = document.getElementById('filterScreen');
+  const compareScreenEl = document.getElementById('compareScreen');
+  
+  let demoInterval;
+  let isPlaying = true;
+  let startPhase = true;
+
+  // Fächer die nacheinander aktiviert werden
+  const subjectsToActivate = ['Englisch', 'Mathe', 'Philosophie', 'Politik', 'Sport', 'Technologie', 'Wirtschaft'];
+
+  // ERSETZE DIE startSubjectAnimation FUNKTION (Zeile 395)
+  function startSubjectAnimation() {
+    let currentIndex = 0;
+    
+    function activateNext() {
+      if (currentIndex < subjectsToActivate.length) {
+        const subjectName = subjectsToActivate[currentIndex];
+        const subjectBtn = document.querySelector(`[data-subject="${subjectName}"]`);
+        if (subjectBtn) {
+          subjectBtn.classList.add('active');
+        }
+        currentIndex++;
+        setTimeout(activateNext, 400); // 400ms zwischen jedem Fach
+      } else {
+        // Alle Fächer aktiviert, nach 1 Sekunde zum Slider-Screen wechseln
+        setTimeout(switchToSliders, 1000);
+      }
+    }
+    
+    // Starte Animation nach 1 Sekunde
+    setTimeout(activateNext, 1000);
+  }
+
+  function switchToSliders() {
+    // Button aktivieren
+    const nextBtn = startScreenEl.querySelector('.next-btn');
+    nextBtn.classList.add('active');
+    
+    setTimeout(() => {
+      startScreenEl.classList.add('hidden');
+      document.getElementById('sliderScreen').style.display = 'flex';
+      startPhase = false;
+      
+      // Button zurücksetzen
+      nextBtn.classList.remove('active');
+      
+      // Slider-Animation starten
+      animateSliders();
+    }, 200); // 200ms für visuelles Feedback
+  }
+
+  // ERSETZE DIE animateSliders FUNKTION (Zeile 534-551)
+  function animateSliders() {
+    // Slider-Werte und Timing
+    const sliders = [
+      { track: 'theory-track', thumb: 'theory-thumb', value: 75, delay: 500 },
+      { track: 'application-track', thumb: 'application-thumb', value: 100, delay: 1000 },
+      { track: 'cooperation-track', thumb: 'cooperation-thumb', value: 50, delay: 1500 }
+    ];
+    
+    sliders.forEach(slider => {
+      setTimeout(() => {
+        const track = document.getElementById(slider.track);
+        const thumb = document.getElementById(slider.thumb);
+        if (track && thumb) {
+          track.style.width = slider.value + '%';
+          thumb.style.right = (100 - slider.value) + '%';
+          // ENTFERNT: thumb.style.transform = 'translateX(50%)'; (ist jetzt im CSS)
+        }
+      }, slider.delay);
+    });
+    
+    // Nach 3 Sekunden zum Chat wechseln
+    setTimeout(switchToChat, 4000);
+  }
+
+  // ÄNDERE NUR DIE switchToChat FUNKTION (Zeile 549)
+  function switchToChat() {
+    // Button aktivieren
+    const nextBtn = sliderScreenEl.querySelector('.next-btn');
+    nextBtn.classList.add('active');
+    
+    setTimeout(() => {
+      // Zum Interessen-Screen wechseln statt direkt zum Chat
+      document.getElementById('sliderScreen').style.display = 'none';
+      document.getElementById('interestsScreen').style.display = 'flex';
+      
+      // Button zurücksetzen
+      nextBtn.classList.remove('active');
+      
+      // Typing-Animation starten
+      animateTyping();
+    }, 200);
+  }
+
+  // NEUE FUNKTIONEN HINZUFÜGEN (am Ende vor der Initialize-Sektion)
+  function animateTyping() {
+    const texts = [
+      { id: 'praktika-input', text: 'Mithilfe Jugendzentrum, Versorgung Tiere im Tierheim.', delay: 500 },
+      { id: 'traumberuf-input', text: 'Ja, arbeiten bei einer NGO z.B. im Projektmanagement.', delay: 500 } // Delay bleibt gleich für Berechnung
+    ];
+    
+    let firstTextDuration = 0; // Berechne Dauer des ersten Texts
+    
+    texts.forEach((item, index) => {
+      let actualDelay = item.delay;
+      
+      // Für den zweiten Text: Warte bis erster Text fertig ist + 0.5 Sekunden
+      if (index === 1) {
+        firstTextDuration = texts[0].text.length * 50; // 50ms pro Zeichen
+        actualDelay = texts[0].delay + firstTextDuration + 500; // +500ms Pause
+      }
+      
+      setTimeout(() => {
+        const input = document.getElementById(item.id);
+        if (input) {
+          input.value = '';
+          
+          let currentIndex = 0;
+          function typeNextChar() {
+            if (currentIndex < item.text.length) {
+              input.value += item.text[currentIndex];
+              currentIndex++;
+              setTimeout(typeNextChar, 50); // 50ms pro Zeichen
+            }
+          }
+          typeNextChar();
+        }
+      }, actualDelay);
+    });
+    
+    // Berechne Gesamtdauer: Letzter Text Delay + Dauer + 1 Sekunde Pause
+    const totalDuration = texts[0].delay + firstTextDuration + 500 + (texts[1].text.length * 50) + 1000;
+    setTimeout(switchToChatFromInterests, totalDuration);
+  }
+
+  // ERSETZE DIE switchToChatFromInterests FUNKTION (Zeile 734)
+  function switchToChatFromInterests() {
+    // Button aktivieren
+    const nextBtn = document.querySelector('#interestsScreen .next-btn');
+    nextBtn.classList.add('active');
+    
+    setTimeout(() => {
+      // Zum Filter-Screen wechseln statt direkt zum Chat
+      document.getElementById('interestsScreen').style.display = 'none';
+      document.getElementById('filterScreen').style.display = 'flex';
+      
+      // Button zurücksetzen
+      nextBtn.classList.remove('active');
+      
+      // Filter-Animation starten
+      animateFilters();
+    }, 200);
+  }
+
+  // NEUE FUNKTIONEN HINZUFÜGEN
+  function animateFilters() {
+    // Sequenz der Aktionen
+    const animationSequence = [
+      { action: 'activate', selector: '[data-filter="vollzeit"]', delay: 500 },
+      { action: 'activate', selector: '[data-filter="oeffentlich"]', delay: 1200 },
+      { action: 'activate', selector: '[data-filter="privat"]', delay: 1800 },
+      { action: 'type', text: 'Köln', delay: 2400 },
+      { action: 'addTag', city: 'Köln', delay: 3400 },
+      { action: 'type', text: 'Mannheim', delay: 4000 },
+      { action: 'addTag', city: 'Mannheim', delay: 5200 },
+      { action: 'activate', selector: '[data-filter="50km"]', delay: 5800 }
+    ];
+    
+    // Führe die Sequenz aus
+    animationSequence.forEach(step => {
+      setTimeout(() => {
+        switch(step.action) {
+          case 'activate':
+            const btn = document.querySelector(step.selector);
+            if (btn) {
+              btn.classList.add('active');
+              console.log('Filter aktiviert:', step.selector);
+            }
+            break;
+          case 'type':
+            typeInCity(step.text);
+            break;
+          case 'addTag':
+            addCityTag(step.city);
+            break;
+        }
+      }, step.delay);
+    });
+    
+    // Nach Animation zum Chat wechseln (nach der letzten Aktion + 1,5 Sekunden)
+    setTimeout(switchToChatFromFilter, 7300);
+  }
+
+  // Funktion zum Simulieren des Eintippens
+  function typeInCity(city) {
+    const input = document.getElementById('cityInput');
+    if (!input) return;
+    
+    input.value = '';
+    
+    let i = 0;
+    function typeChar() {
+      if (i < city.length) {
+        input.value += city.charAt(i);
+        i++;
+        setTimeout(typeChar, 100);
+      }
+    }
+    
+    typeChar();
+  }
+
+  // Funktion zum Hinzufügen eines Stadt-Tags
+  function addCityTag(city) {
+    const input = document.getElementById('cityInput');
+    const tagsContainer = document.getElementById('cityTags');
+    
+    if (!input || !tagsContainer) return;
+    
+    // Eingabefeld leeren
+    input.value = '';
+    
+    // Tag erstellen und hinzufügen
+    const tag = document.createElement('div');
+    tag.className = 'city-tag';
+    tag.innerHTML = `${city} <span class="remove">×</span>`;
+    tag.style.opacity = '0';
+    
+    tagsContainer.appendChild(tag);
+    
+    // Animation für das neue Tag
+    setTimeout(() => {
+      tag.style.opacity = '1';
+    }, 10);
+  }
+  
+  // ERSETZE DIE switchToChatFromFilter FUNKTION (Zeile 856-873)
+  function switchToChatFromFilter() {
+    // Button aktivieren
+    const nextBtn = document.querySelector('#filterScreen .next-btn');
+    nextBtn.classList.add('active');
+    
+    setTimeout(() => {
+      // Zum Chat wechseln
+      document.getElementById('filterScreen').style.display = 'none';
+      chatEl.style.display = 'block';
+      
+      // SOFORT Footer hinzufügen bevor die Chat-Animation startet
+      if (!document.querySelector('.chat-bottom-nav')) {
+        const bottomNav = document.createElement('div');
+        bottomNav.className = 'bottom-nav chat-bottom-nav';
+        bottomNav.innerHTML = `
+          <div class="back-btn">Zurück</div>
+          <div class="next-btn disabled">Auswählen</div>
+        `;
+        chatEl.appendChild(bottomNav);
+      }
+      
+      // Button zurücksetzen
+      nextBtn.classList.remove('active');
+      
+      // Chat Demo starten
+      animateChatDemo();
+    }, 200);
+  }
+
+  // ERSETZE DIE animateChatDemo FUNKTION (Zeile 875-892)
+  function animateChatDemo() {
+    // Container leeren (aber Footer behalten)
+    const existingFooter = document.querySelector('.chat-bottom-nav');
+    chatEl.innerHTML = '';
+    
+    // Footer wieder hinzufügen falls er entfernt wurde
+    if (existingFooter) {
+      chatEl.appendChild(existingFooter);
+    }
+    
+    clearTimeout(demoInterval);
+    
+    chatMessages.forEach((message, index) => {
+      demoInterval = setTimeout(() => {
+        addChatMessage(message);
+        
+        // Nach der letzten Nachricht die Auswahl-Funktionalität aktivieren
+        if (index === chatMessages.length - 1) {
+          setTimeout(() => {
+            setupCourseSelection();
+          }, 500);
+        }
+      }, message.delay);
+    });
+  }
+  
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    if (skipDemo) {
+      // Überspringe die Demo und gehe direkt zum Chat-Screen
+      startScreenEl.classList.add('hidden');
+      document.getElementById('sliderScreen').style.display = 'none';
+      document.getElementById('interestsScreen').style.display = 'none';
+      document.getElementById('filterScreen').style.display = 'none';
+      document.getElementById('compareScreen').style.display = 'none';
+      
+      // Zeige Chat-Screen
+      chatEl.style.display = 'block';
+      
+      // Füge Footer hinzu
+      if (!document.querySelector('.chat-bottom-nav')) {
+        const bottomNav = document.createElement('div');
+        bottomNav.className = 'bottom-nav chat-bottom-nav';
+        bottomNav.innerHTML = `
+          <div class="back-btn">Zurück</div>
+          <div class="next-btn disabled">Auswählen</div>
+        `;
+        chatEl.appendChild(bottomNav);
+      }
+      
+      // Starte Chat-Animation
+      animateChatDemo();
+    } else {
+      // Normale Animation starten
+      startScreenEl.classList.remove('hidden');
+      chatEl.style.display = 'none';
+      startSubjectAnimation();
+    }
+  });
+  
+  // ERWEITERE DIE resetToStart FUNKTION (nach Zeile 988)
+  function resetToStart() {
+    // Zurück zum Startbildschirm
+    chatEl.style.display = 'none';
+    chatEl.innerHTML = '';
+    document.getElementById('sliderScreen').style.display = 'none';
+    document.getElementById('interestsScreen').style.display = 'none';
+    document.getElementById('filterScreen').style.display = 'none';
+    document.getElementById('compareScreen').style.display = 'none'; // HINZUGEFÜGT
+    startScreenEl.classList.remove('hidden');
+    
+    // Alle aktiven Fächer zurücksetzen
+    document.querySelectorAll('.subject-btn.active').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    // Alle Slider zurücksetzen
+    document.querySelectorAll('.slider-track').forEach(track => {
+      track.style.width = '0%';
+    });
+    document.querySelectorAll('.slider-thumb').forEach(thumb => {
+      thumb.style.right = '100%';
+    });
+    
+    // Textfelder zurücksetzen
+    document.querySelectorAll('.interest-input').forEach(input => {
+      input.value = '';
+    });
+    
+    // Stadt-Eingabefeld zurücksetzen
+    const cityInput = document.getElementById('cityInput');
+    if (cityInput) {
+      cityInput.value = '';
+    }
+    
+    // Stadt-Tags entfernen
+    const cityTags = document.getElementById('cityTags');
+    if (cityTags) {
+      cityTags.innerHTML = '';
+    }
+    
+    // Filter-Buttons zurücksetzen
+    document.querySelectorAll('.filter-btn.active').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    startPhase = true;
+    
+    // Neue Fächer-Animation starten
+    startSubjectAnimation();
+  }
+
+  // FÜGE DIESE VARIABLE AM ANFANG DES SCRIPTS HINZU (nach Zeile 794)
+  const skipDemo = true; // Setze auf true, um direkt zum Chat-Screen zu springen
+
+  // FÜGE DIESE FUNKTIONEN NACH ZEILE 929 (nach der typeInCity und addCityTag Funktion) EIN
+  function setupCourseSelection() {
+    const courseCards = document.querySelectorAll('.course-card');
+    const nextBtn = document.querySelector('.chat-bottom-nav .next-btn');
+    let selectedCount = 0;
+    let selectedCourses = [];
+    
+    // Intelligente Banner-Logik mit Smart Nudging
+    function updateContextBanner(selectedCount) {
+      const banner = document.getElementById('contextBanner');
+      if (!banner) return;
+      
+      const text = banner.querySelector('.banner-text');
+      
+      switch(selectedCount) {
+        case 0:
+          text.textContent = 'Tippe einen Studiengang an';
+          banner.classList.remove('highlight');
+          // Pulse-Animation entfernen
+          document.querySelectorAll('.course-card').forEach(card => {
+            card.style.animation = 'none';
+          });
+          break;
+          
+        case 1:
+          text.textContent = 'Super! Noch einen für den Vergleich';
+          banner.classList.add('highlight');
+          
+          // Visueller Nudge nach 2 Sekunden
+          setTimeout(() => {
+            if (selectedCount === 1) { // Nur wenn immer noch 1 ausgewählt
+              document.querySelectorAll('.course-card:not(.selected)').forEach(card => {
+                card.style.animation = 'pulse 2s infinite';
+              });
+            }
+          }, 2000);
+          break;
+          
+        case 2:
+          // BANNER KOMPLETT VERSTECKEN bei 2 Auswahlen
+          banner.style.display = 'none';
+          // Pulse-Animation entfernen
+          document.querySelectorAll('.course-card').forEach(card => {
+            card.style.animation = 'none';
+          });
+          break;
+      }
+    }
+    
+    courseCards.forEach(card => {
+      card.addEventListener('click', () => {
+        // Tap-Animation hinzufügen
+        card.classList.add('tap-animation');
+        setTimeout(() => card.classList.remove('tap-animation'), 200);
+        
+        if (card.classList.contains('selected')) {
+          card.classList.remove('selected');
+          selectedCount--;
+          selectedCourses = selectedCourses.filter(id => id !== parseInt(card.dataset.id));
+        } else if (selectedCount < 2) {
+          card.classList.add('selected');
+          selectedCount++;
+          selectedCourses.push(parseInt(card.dataset.id));
+        }
+        
+        // Banner und Button aktualisieren
+        updateContextBanner(selectedCount);
+        
+        // Button-Text und Status aktualisieren
+        if (selectedCount === 1) {
+          nextBtn.textContent = 'Details';
+          nextBtn.classList.remove('disabled');
+          
+          nextBtn.addEventListener('click', () => {
+            nextBtn.classList.add('active');
+            setTimeout(() => {
+              console.log('Details für Studiengang:', selectedCourses[0]);
+              nextBtn.classList.remove('active');
+            }, 200);
+          }, { once: true });
+          
+        } else if (selectedCount === 2) {
+          nextBtn.textContent = 'Vergleichen';
+          nextBtn.classList.remove('disabled');
+          
+          nextBtn.addEventListener('click', () => {
+            nextBtn.classList.add('active');
+            setTimeout(() => {
+              chatEl.style.display = 'none';
+              document.getElementById('compareScreen').style.display = 'flex';
+              loadComparisonData(selectedCourses);
+              nextBtn.classList.remove('active');
+            }, 200);
+          }, { once: true });
+          
+        } else {
+          nextBtn.textContent = 'Wähle aus';
+          nextBtn.classList.add('disabled');
+        }
+      });
+    });
+    
+    // Initial erste und vierte Kachel auswählen
+    if (courseCards.length >= 4) {
+      setTimeout(() => {
+        courseCards[0].click();
+        setTimeout(() => {
+          courseCards[3].click();
+        }, 1500);
+      }, 1000);
+    }
+  }
+
+  function loadComparisonData(selectedCourseIds) {
+    const compareContent = document.getElementById('compareContent');
+    if (!compareContent) return;
+    
+    // Ausgewählte Kurse finden
+    const selectedCourses = chatMessages[2].courses.filter(course => 
+      selectedCourseIds.includes(course.id)
+    );
+    
+    // Vergleichsdaten anzeigen
+    compareContent.innerHTML = `
+      <h3 style="text-align:center;margin-bottom:20px">Die ausgewählten Studiengänge im Vergleich</h3>
+      <div class="course-card selected">
+        <div class="card-content">
+          <div class="card-left">
+            <div class="name">${selectedCourses[0]?.name || 'Studiengang 1'}</div>
+            <div class="uni">${selectedCourses[0]?.uni || 'Universität'}</div>
+          </div>
+          <div class="card-right">
+            <div class="match">${selectedCourses[0]?.match || '90%'}</div>
+            <div class="label">Match</div>
+          </div>
+        </div>
+      </div>
+      <div class="course-card selected">
+        <div class="card-content">
+          <div class="card-left">
+            <div class="name">${selectedCourses[1]?.name || 'Studiengang 2'}</div>
+            <div class="uni">${selectedCourses[1]?.uni || 'Universität'}</div>
+          </div>
+          <div class="card-right">
+            <div class="match">${selectedCourses[1]?.match || '90%'}</div>
+            <div class="label">Match</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  // ERSETZE AUCH DIE addChatMessage FUNKTION (title-Teil, Zeile 1433)
+  function addChatMessage(message) {
+    const messageDiv = document.createElement('div');
+    
+    if (message.type === 'bot') {
+      messageDiv.innerHTML = `
+        <div class="row bot">
+          <div class="avatar">P</div>
+          <div class="bubble animate">
+            <p style="margin:0">${message.text}</p>
+            ${message.options ? `
+              <div class="chips">
+                ${message.options.map(opt => `<div class="chip">${opt}</div>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    } else if (message.type === 'title') {
+      // Überschrift mit intelligentem Banner
+      messageDiv.innerHTML = `
+        <div class="chat-title animate">
+          <h2>${message.text}</h2>
+        </div>
+        <div id="contextBanner" class="context-banner animate">
+          <div class="banner-text">Tippe einen Studiengang an</div>
+        </div>
+      `;
+    } else if (message.type === 'user') {
+      messageDiv.innerHTML = `
+        <div class="row user">
+          <div class="bubble animate">${message.text}</div>
+        </div>
+      `;
+    } else if (message.type === 'courses') {
+      // Studiengänge als auswählbare Kacheln mit Sternen
+      const coursesHTML = message.courses.map(course => `
+        <div class="course-card" data-id="${course.id}">
+          <div class="card-content">
+            <div class="card-left">
+              <div class="name">${course.name}</div>
+              <div class="uni">${course.uni}</div>
+            </div>
+            <div class="card-right">
+              <div class="star-rating">${generateStars(course.stars)}</div>
+              <div class="fit-label">Fit</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+      messageDiv.innerHTML = `<div class="animate">${coursesHTML}</div>`;
+    }
+    
+    chatEl.appendChild(messageDiv);
+    chatEl.scrollTop = chatEl.scrollHeight;
+  }
+
+  // NEUE FUNKTION FÜR STERNE-GENERIERUNG (nach Zeile 1100)
+  function generateStars(count) {
+    let starsHTML = '';
+    for (let i = 1; i <= 5; i++) {
+      if (i <= count) {
+        starsHTML += '<span class="star">⭐</span>';
+      } else {
+        starsHTML += '<span class="star empty">☆</span>';
+      }
+    }
+    return starsHTML;
+  }
+  </script>
+</body>
+</html>
